@@ -29,6 +29,7 @@ public class MDI extends JFrame{
     private JSplitPane splitPane;
     private JFileChooser fileChooser;
     private JDialog registerStaff;
+    private JDialog registerPatient;
     
     //constructor function for the MDI
     public MDI(){
@@ -45,6 +46,7 @@ public class MDI extends JFrame{
         splitPane.setOneTouchExpandable(true);
         fileChooser = new JFileChooser();
         registerStaff = new Registerstaff(this);
+        registerPatient = new RegisterPatient(this);
         
         
         addWindowListener(new WindowAdapter(){
@@ -101,6 +103,14 @@ public class MDI extends JFrame{
         JMenuItem registerNewPatientItem = new JMenuItem("Register New Patient");
         registerNewPatientItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         registerNewPatientItem.setIcon(new ImageIcon(this.getClass().getResource("/images/new_patient_1.png")));
+        registerNewPatientItem.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                registerPatient.setVisible(true);
+            }
+        
+        });
         
         JMenuItem registerDataItem = new JMenuItem("Register New Staff");
         registerDataItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
