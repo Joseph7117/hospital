@@ -13,6 +13,7 @@ import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -27,6 +28,7 @@ public class MDI extends JFrame{
     private RightFrame framesPanel;
     private JSplitPane splitPane;
     private JFileChooser fileChooser;
+    private JDialog registerStaff;
     
     //constructor function for the MDI
     public MDI(){
@@ -42,6 +44,7 @@ public class MDI extends JFrame{
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftFormPanel, framesPanel);
         splitPane.setOneTouchExpandable(true);
         fileChooser = new JFileChooser();
+        registerStaff = new Registerstaff(this);
         
         
         addWindowListener(new WindowAdapter(){
@@ -102,6 +105,14 @@ public class MDI extends JFrame{
         JMenuItem registerDataItem = new JMenuItem("Register New Staff");
         registerDataItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
         registerDataItem.setIcon(new ImageIcon(this.getClass().getResource("/images/newstaff.png")));
+        registerDataItem.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                registerStaff.setVisible(true);
+            }
+            
+        });
         
         JMenuItem importDataItem = new JMenuItem("Import Patients' Records");
         importDataItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
