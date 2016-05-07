@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -42,9 +43,21 @@ public class RightFrame extends JPanel{
            tabPane = new JTabbedPane();
            popup1 = new JPopupMenu();
            
+           
+           
            JMenuItem newStaffRecordItem = new JMenuItem("Register New Staff");
            newStaffRecordItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
            newStaffRecordItem.setIcon(new ImageIcon(this.getClass().getResource("/images/newstaff.png")));
+           newStaffRecordItem.addActionListener(new ActionListener(){
+
+               @Override
+               public void actionPerformed(ActionEvent ae) {
+                   //show the RegisterStaff window
+                   MDI parent = null;
+                   new Registerstaff(parent).setVisible(true);
+               }
+           
+           });
            
            JMenuItem admitNewPatientItem = new JMenuItem("Admit New Patient");
            admitNewPatientItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));

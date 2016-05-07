@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
+            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Toolbar.java</file>
             <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Login.java</file>
             <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Registerstaff.java</file>
-=======
-            <file>file:/C:/Users/JOEYPLUS/Documents/NetBeansProjects/hospital/src/hospital/Registerstaff.java</file>
-            <file>file:/C:/Users/JOEYPLUS/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
-            <file>file:/C:/Users/JOEYPLUS/Documents/NetBeansProjects/hospital/src/hospital/Dashboard.java</file>
-            <file>file:/C:/Users/JOEYPLUS/Documents/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
->>>>>>> 445cda23a17ac390650f59c6f308e3e20b1972f4
+            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Dashboard.java</file>
+            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
+            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/RightFrame.java</file>
         </group>
     </open-files>
 </project-private>

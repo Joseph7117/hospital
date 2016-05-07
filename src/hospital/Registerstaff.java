@@ -93,7 +93,7 @@ public class Registerstaff extends JDialog{
                                                                                 designationModel.addElement("Nurse");                                       
         postalCodeField = new JTextField(20);                                   designationModel.addElement("Pharmaceutical");   
         postalCodeField.setMinimumSize(new Dimension(200,20));
-        setSize(750,550);                                                       designationModel.addElement("IT");
+        setSize(780,550);                                                       designationModel.addElement("IT");
         setLocationRelativeTo(null);  
                                                                                 designationModel.addElement("Consulting");
         layoutControls();                                                       designationField.setModel(designationModel);

@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
@@ -54,6 +55,7 @@ public class MDI extends JFrame{
             public void windowClosing(WindowEvent a){
                 System.out.println("Application is Closing");
                 dispose();
+                System.exit(0);
                 System.gc();  //Garbage Collector
             }
         });
@@ -194,13 +196,39 @@ public class MDI extends JFrame{
         
         
         menuBar.add(admissionsMenu);
+        
         menuBar.add(accountsMenu);
+        
         menuBar.add(consultationMenu);
+        
         menuBar.add(wardDetailsMenu);
+        
         menuBar.add(outPatientService);
+        
         menuBar.add(pharmaceuticalMenu);
+        
         menuBar.add(dataReportMenu);
+        
         menuBar.add(windowMenu);
+        
+        JCheckBoxMenuItem viewSidePanel = new JCheckBoxMenuItem("View Side Panel");
+        viewSidePanel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        viewSidePanel.setSelected(true);
+        viewSidePanel.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                if(menuItem.isSelected()){
+                    splitPane.setDividerLocation((int)leftFormPanel.getMinimumSize().getWidth());
+                }
+                    leftFormPanel.setVisible(menuItem.isSelected());
+            }
+        
+        });
+        
+        windowMenu.add(viewSidePanel);
+        
+        
         menuBar.add(helpMenu);
         
         

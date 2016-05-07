@@ -3,6 +3,8 @@ package hospital;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -26,11 +28,22 @@ public class Toolbar extends JToolBar{
     private JButton help;
     
     public Toolbar(){
+        super();
         
         setBorder(BorderFactory.createEtchedBorder());
         patientsButton = new JButton();
         patientsButton.setIcon(createIcon("/images/patient.png"));
         patientsButton.setToolTipText("Add Patient");
+        patientsButton.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                MDI parent = null;
+                //show the register Patient Form
+                new RegisterPatient(parent).setVisible(true);
+            }
+        
+        });
         
         physiciansButton = new JButton();
         physiciansButton.setIcon(createIcon("/images/physician.png"));
