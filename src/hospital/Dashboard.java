@@ -31,7 +31,7 @@ public class Dashboard extends JPanel{
         setLayout(new BorderLayout());
         
         
-        add(BorderLayout.CENTER, chartPanel);
+        //add(BorderLayout.CENTER, chartPanel);
         add(BorderLayout.SOUTH, new JLabel("SOUTH"));
         add(BorderLayout.NORTH, new JLabel("NORTH"));
         add(BorderLayout.EAST, new JLabel("EAST"));
