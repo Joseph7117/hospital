@@ -31,6 +31,7 @@ public class MDI extends JFrame{
     private JFileChooser fileChooser;
     private JDialog registerStaff;
     private JDialog registerPatient;
+    private JDialog registerDoctor;
     
     //constructor function for the MDI
     public MDI(){
@@ -48,6 +49,7 @@ public class MDI extends JFrame{
         fileChooser = new JFileChooser();
         registerStaff = new Registerstaff(this);
         registerPatient = new RegisterPatient(this);
+        registerDoctor = new RegisterDoctor(this);
         
         
         addWindowListener(new WindowAdapter(){
@@ -95,6 +97,8 @@ public class MDI extends JFrame{
         dataReportMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu windowMenu = new JMenu("Window");
         windowMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu toolsMenu = new JMenu("Tools");
+        toolsMenu.setMargin(new Insets(5,5,5,5));
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMargin(new Insets(5, 5, 5, 5));
         
@@ -124,6 +128,18 @@ public class MDI extends JFrame{
                 registerStaff.setVisible(true);
             }
             
+        });
+        
+        JMenuItem registerDoctorItem = new JMenuItem("Register New Doctor");
+        registerDoctorItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        registerDoctorItem.setIcon(new ImageIcon(this.getClass().getResource("/images/doctor.png")));
+        registerDoctorItem.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                registerDoctor.setVisible(true);
+            }
+        
         });
         
         JMenuItem importDataItem = new JMenuItem("Import Patients' Records");
@@ -183,6 +199,7 @@ public class MDI extends JFrame{
         
         registrationMenu.add(registerNewPatientItem);
         registrationMenu.add(registerDataItem);
+        registrationMenu.add(registerDoctorItem);
         registrationMenu.addSeparator();
         registrationMenu.add(importDataItem);
         registrationMenu.add(importStaffItem);
@@ -352,6 +369,50 @@ public class MDI extends JFrame{
         windowMenu.add(viewSidePanel);
         windowMenu.add(viewPatientRecordsMenuItem);
         
+        menuBar.add(toolsMenu);
+       JMenuItem dbManagementMenuItem = new JMenuItem("Add New Database");
+       dbManagementMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       dbManagementMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/database.png")));
+       
+       JMenuItem importDatabase = new JMenuItem("Import Database");
+       importDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       importDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/import_db.png")));
+       
+       JMenuItem optimizeDatabase = new JMenuItem("Optimize Database");
+       optimizeDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       optimizeDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/optimize.png")));
+       
+       JMenuItem searchNetwork  = new JMenuItem("Search Database on Network");
+       searchNetwork.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       searchNetwork.setIcon(new ImageIcon(this.getClass().getResource("/images/search_db.png")));
+       
+       JMenuItem backUpDatabase = new JMenuItem("Back-up Database");
+       backUpDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       backUpDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/backup.png")));
+       
+       JMenuItem restoreDatabase = new JMenuItem("Restore Database");
+       restoreDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       restoreDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/restore.png")));
+       
+       JMenuItem dbSync = new JMenuItem("Database Synchronization");
+       dbSync.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_7, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       dbSync.setIcon(new ImageIcon(this.getClass().getResource("/images/sync.png")));
+       
+       JMenuItem cloudFolder = new JMenuItem("Cloud Folder Synchronization");
+       cloudFolder.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_8, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+       cloudFolder.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-folder.png")));
+       
+       toolsMenu.add(dbManagementMenuItem);
+       toolsMenu.add(importDatabase);
+       toolsMenu.add(optimizeDatabase);
+       toolsMenu.add(searchNetwork);
+       toolsMenu.addSeparator();
+       toolsMenu.add(backUpDatabase);
+       toolsMenu.add(restoreDatabase);
+       toolsMenu.add(dbSync);
+       toolsMenu.add(cloudFolder);
+       
+        
         
         menuBar.add(helpMenu);
         
@@ -363,6 +424,15 @@ public class MDI extends JFrame{
         JMenuItem healthSearchMenuItem = new JMenuItem("Search Health Issues");
         JMenuItem checkUpdatesMenuItem = new JMenuItem("Check Updates");
         JMenuItem aboutMenuItem = new JMenuItem("About");
+        aboutMenuItem.addActionListener(new ActionListener (){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                JOptionPane.showMessageDialog(null, "Hospital Management System Version. 1."+"\n"
+                           + " Licensed Under the GNU License", "About", JOptionPane.INFORMATION_MESSAGE);
+            }
+    
+         });
         
         helpMenu.add(helpContentsMenuItem);
         helpMenu.add(docsContentMenuItem);
