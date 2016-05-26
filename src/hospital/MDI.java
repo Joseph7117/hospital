@@ -59,7 +59,7 @@ public class MDI extends JFrame{
                 System.gc();  //Garbage Collector
             }
         });
-        
+
         
         add(toolbar, BorderLayout.PAGE_START);
         add(splitPane, BorderLayout.CENTER);
@@ -199,6 +199,60 @@ public class MDI extends JFrame{
         
         menuBar.add(accountsMenu);
         
+        JMenuItem balanceSheetMenuItem = new JMenuItem("Balance Sheet");
+        balanceSheetMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        balanceSheetMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/balance_sheet.png")));
+        
+        JMenuItem financialSummaryMenuItem = new JMenuItem("Financial Summary");
+        financialSummaryMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        financialSummaryMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/financial_summary.png")));
+        
+        JMenuItem billedIncomeMenuItem = new JMenuItem("Medics Billed Income");
+        billedIncomeMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        billedIncomeMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/billed_statement.png")));
+        
+        JMenuItem costsAndProfitMenuItem = new JMenuItem("Costs and Profits");
+        costsAndProfitMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        costsAndProfitMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/cost_profit.png")));
+        
+        JMenuItem invoicesMenuItem = new JMenuItem("Billing Invoices");
+        invoicesMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        invoicesMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/invoice.png")));
+        
+        JMenuItem unpaidInvoicesMenuItem = new JMenuItem("Un-paid Billing Invoices");
+        unpaidInvoicesMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        unpaidInvoicesMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/unpaid.png")));
+        
+        JMenuItem receiptsMenuItem = new JMenuItem("Billing Receipts");
+        receiptsMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        receiptsMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/receipt.png")));
+        
+        JMenuItem suppliersMenuItem = new JMenuItem("Suppliers");
+        suppliersMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        suppliersMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/suppliers.png")));
+        
+        JMenuItem purchasesMenuItem = new JMenuItem("Purchases");
+        purchasesMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        purchasesMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/purchases.png")));
+        
+        JMenuItem supplierInvoicesMenuItem = new JMenuItem("Suppliers' Invoices");
+        supplierInvoicesMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        supplierInvoicesMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/supplier_invoice.png")));
+        
+        
+        accountsMenu.add(balanceSheetMenuItem);
+        accountsMenu.add(financialSummaryMenuItem);
+        accountsMenu.add(billedIncomeMenuItem);
+        accountsMenu.add(costsAndProfitMenuItem);
+        accountsMenu.addSeparator();
+        accountsMenu.add(invoicesMenuItem);
+        accountsMenu.add(unpaidInvoicesMenuItem);
+        accountsMenu.add(receiptsMenuItem);
+        accountsMenu.addSeparator();
+        accountsMenu.add(suppliersMenuItem);
+        accountsMenu.add(purchasesMenuItem);
+        accountsMenu.add(supplierInvoicesMenuItem);
+        
         menuBar.add(consultationMenu);
         
         menuBar.add(wardDetailsMenu);
@@ -208,6 +262,71 @@ public class MDI extends JFrame{
         menuBar.add(pharmaceuticalMenu);
         
         menuBar.add(dataReportMenu);
+        JMenuItem admissionsMenuItem = new JMenuItem("Admissions");
+        admissionsMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
+        admissionsMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/admissions.png")));
+        
+        JMenuItem admissionDaysMenuItem = new JMenuItem("Admission Days");
+        admissionDaysMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
+        admissionDaysMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/admission-days.png")));
+        
+        JMenuItem inpatientMenuItem = new JMenuItem("In-patient By Co-payer");
+        inpatientMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
+        inpatientMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/inpatient.png")));
+        
+        JMenuItem diagnosisMenuItem = new JMenuItem("Diagnoses Statistics");
+        diagnosisMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
+        diagnosisMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/diagnosis.png")));
+        
+        JMenu appointmentMenu = new JMenu("Appointments Made");
+        appointmentMenu.setIcon(new ImageIcon(this.getClass().getResource("/images/appointments.png")));
+        
+        JMenuItem todayMenuItem = new JMenuItem("Today");
+        todayMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/today.png")));
+        todayMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        
+        JMenuItem thisWeekMenuItem = new JMenuItem("This Week");
+        thisWeekMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/week.png")));
+        thisWeekMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        
+        JMenuItem thisMonth = new JMenuItem("This Month");
+        thisMonth.setIcon(new ImageIcon(this.getClass().getResource("/images/month.png")));
+        thisMonth.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        
+        appointmentMenu.add(todayMenuItem);
+        appointmentMenu.add(thisWeekMenuItem);
+        appointmentMenu.add(thisMonth);
+        
+        JMenuItem prescriptionStatisticsMenuItem = new JMenuItem("Prescription Statistics");
+        prescriptionStatisticsMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+        prescriptionStatisticsMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/prescription.png")));
+        
+        JMenuItem patientConsultationMenuItem = new JMenuItem("Patient Consultations");
+        patientConsultationMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+        patientConsultationMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/consultation.png")));
+        
+        JMenuItem patientXrayImagesMenuItem = new JMenuItem("Patient X-Ray Images Taken");
+        patientXrayImagesMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
+        patientXrayImagesMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/xray.png")));
+        
+        JMenuItem patientsAttendanceMenuItem = new JMenuItem("Patient Attendance");
+        patientsAttendanceMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
+        patientsAttendanceMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/attendance.png")));
+        
+        
+        dataReportMenu.add(admissionsMenuItem);
+        dataReportMenu.add(admissionDaysMenuItem);
+        dataReportMenu.add(inpatientMenuItem);
+        dataReportMenu.addSeparator();
+        dataReportMenu.add(diagnosisMenuItem);
+        dataReportMenu.add(appointmentMenu);
+        dataReportMenu.add(prescriptionStatisticsMenuItem);
+        dataReportMenu.addSeparator();
+        dataReportMenu.add(patientConsultationMenuItem);
+        dataReportMenu.add(patientXrayImagesMenuItem);
+        dataReportMenu.add(patientsAttendanceMenuItem);
+        
+        
         
         menuBar.add(windowMenu);
         
@@ -226,12 +345,35 @@ public class MDI extends JFrame{
         
         });
         
+        JMenuItem viewPatientRecordsMenuItem = new JMenuItem("View Patient Records");
+        viewPatientRecordsMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        viewPatientRecordsMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/records.png")));
+        
         windowMenu.add(viewSidePanel);
+        windowMenu.add(viewPatientRecordsMenuItem);
         
         
         menuBar.add(helpMenu);
         
+        JMenuItem helpContentsMenuItem = new JMenuItem("Help Contents");
+        JMenuItem docsContentMenuItem = new JMenuItem("Health Documents and Support");
+        JMenuItem keyboardShortcutMenuItem = new JMenuItem("KeyBoard Shortcuts Card");
+        JMenuItem reportIssueMenuItem = new JMenuItem("Report Issue");
+        JMenuItem healthReferencesMenuItem = new JMenuItem("Health References");
+        JMenuItem healthSearchMenuItem = new JMenuItem("Search Health Issues");
+        JMenuItem checkUpdatesMenuItem = new JMenuItem("Check Updates");
+        JMenuItem aboutMenuItem = new JMenuItem("About");
         
+        helpMenu.add(helpContentsMenuItem);
+        helpMenu.add(docsContentMenuItem);
+        helpMenu.add(keyboardShortcutMenuItem);
+        helpMenu.add(reportIssueMenuItem);
+        helpMenu.addSeparator();
+        helpMenu.add(healthReferencesMenuItem);
+        helpMenu.add(healthSearchMenuItem);
+        helpMenu.addSeparator();
+        helpMenu.add(checkUpdatesMenuItem);
+        helpMenu.add(aboutMenuItem);
         
         return menuBar;
     }
