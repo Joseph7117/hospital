@@ -81,18 +81,22 @@ public class MDI extends JFrame{
         
         JMenu registrationMenu = new JMenu("Registration");
         registrationMenu.setMargin(new Insets(5, 5, 5, 5));
-        JMenu admissionsMenu = new JMenu("Admissions");
-        admissionsMenu.setMargin(new Insets(5, 5, 5, 5));
-        JMenu accountsMenu = new JMenu("Accounts");
-        accountsMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu consultationMenu = new JMenu("Consulation Details");
         consultationMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu patientsMenu = new JMenu("Patients");
+        patientsMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu labMenu = new JMenu ("Labs");
+        labMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu wardDetailsMenu = new JMenu("Ward Details");
         wardDetailsMenu.setMargin(new Insets(5, 5, 5, 5));
-        JMenu outPatientService = new JMenu("Out-Patient Services");
-        outPatientService.setMargin(new Insets(5, 5, 5, 5));
         JMenu pharmaceuticalMenu = new JMenu("Pharmaceutical Services");
         pharmaceuticalMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu accountsMenu = new JMenu("Accounts");
+        accountsMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu housekeepingMenu = new JMenu("House Keeping");
+        housekeepingMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu lastofficeMenu = new JMenu("Last Office");
+        lastofficeMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu dataReportMenu = new JMenu("Data Report");
         dataReportMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu windowMenu = new JMenu("Window");
@@ -210,12 +214,18 @@ public class MDI extends JFrame{
         registrationMenu.add(closeShiftItem);
         registrationMenu.add(quitApplicationItem);
         
+        menuBar.add(consultationMenu);
         
+        menuBar.add(patientsMenu);
         
-        menuBar.add(admissionsMenu);
+        menuBar.add(labMenu);
         
+        menuBar.add(wardDetailsMenu);
+         
+        menuBar.add(pharmaceuticalMenu);
+         
         menuBar.add(accountsMenu);
-        
+                
         JMenuItem balanceSheetMenuItem = new JMenuItem("Balance Sheet");
         balanceSheetMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         balanceSheetMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/balance_sheet.png")));
@@ -270,13 +280,9 @@ public class MDI extends JFrame{
         accountsMenu.add(purchasesMenuItem);
         accountsMenu.add(supplierInvoicesMenuItem);
         
-        menuBar.add(consultationMenu);
+        menuBar.add(housekeepingMenu);
         
-        menuBar.add(wardDetailsMenu);
-        
-        menuBar.add(outPatientService);
-        
-        menuBar.add(pharmaceuticalMenu);
+        menuBar.add(lastofficeMenu);
         
         menuBar.add(dataReportMenu);
         JMenuItem admissionsMenuItem = new JMenuItem("Admissions");
