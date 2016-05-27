@@ -81,6 +81,13 @@ public class MDI extends JFrame{
         
         JMenu registrationMenu = new JMenu("Registration");
         registrationMenu.setMargin(new Insets(5, 5, 5, 5));
+<<<<<<< HEAD
+=======
+        JMenu patientsMenu = new JMenu("Patients");
+        patientsMenu.setMargin(new Insets(5, 5, 5, 5));
+        JMenu accountsMenu = new JMenu("Accounts");
+        accountsMenu.setMargin(new Insets(5, 5, 5, 5));
+>>>>>>> origin/master
         JMenu consultationMenu = new JMenu("Consulation Details");
         consultationMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu patientsMenu = new JMenu("Patients");
@@ -218,7 +225,11 @@ public class MDI extends JFrame{
         
         menuBar.add(patientsMenu);
         
+<<<<<<< HEAD
         menuBar.add(labMenu);
+=======
+        menuBar.add(patientsMenu);
+>>>>>>> origin/master
         
         menuBar.add(wardDetailsMenu);
          
@@ -283,6 +294,9 @@ public class MDI extends JFrame{
         menuBar.add(housekeepingMenu);
         
         menuBar.add(lastofficeMenu);
+        
+        JMenuItem addDrugMenuItem = new JMenuItem("Add Pharmaceutical Drug");
+        
         
         menuBar.add(dataReportMenu);
         JMenuItem admissionsMenuItem = new JMenuItem("Admissions");
@@ -376,6 +390,10 @@ public class MDI extends JFrame{
         windowMenu.add(viewPatientRecordsMenuItem);
         
         menuBar.add(toolsMenu);
+        JMenuItem manageUsers = new JMenuItem("Manage Users");
+        manageUsers.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
+        manageUsers.setIcon(new ImageIcon(this.getClass().getResource("/images/users.png")));
+        
        JMenuItem dbManagementMenuItem = new JMenuItem("Add New Database");
        dbManagementMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        dbManagementMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/database.png")));
@@ -408,6 +426,8 @@ public class MDI extends JFrame{
        cloudFolder.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_8, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        cloudFolder.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-folder.png")));
        
+       toolsMenu.add(manageUsers);
+       toolsMenu.addSeparator();
        toolsMenu.add(dbManagementMenuItem);
        toolsMenu.add(importDatabase);
        toolsMenu.add(optimizeDatabase);
