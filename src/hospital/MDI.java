@@ -81,13 +81,6 @@ public class MDI extends JFrame{
         
         JMenu registrationMenu = new JMenu("Registration");
         registrationMenu.setMargin(new Insets(5, 5, 5, 5));
-<<<<<<< HEAD
-=======
-        JMenu patientsMenu = new JMenu("Patients");
-        patientsMenu.setMargin(new Insets(5, 5, 5, 5));
-        JMenu accountsMenu = new JMenu("Accounts");
-        accountsMenu.setMargin(new Insets(5, 5, 5, 5));
->>>>>>> origin/master
         JMenu consultationMenu = new JMenu("Consulation Details");
         consultationMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu patientsMenu = new JMenu("Patients");
@@ -225,11 +218,7 @@ public class MDI extends JFrame{
         
         menuBar.add(patientsMenu);
         
-<<<<<<< HEAD
         menuBar.add(labMenu);
-=======
-        menuBar.add(patientsMenu);
->>>>>>> origin/master
         
         menuBar.add(wardDetailsMenu);
          
@@ -294,9 +283,6 @@ public class MDI extends JFrame{
         menuBar.add(housekeepingMenu);
         
         menuBar.add(lastofficeMenu);
-        
-        JMenuItem addDrugMenuItem = new JMenuItem("Add Pharmaceutical Drug");
-        
         
         menuBar.add(dataReportMenu);
         JMenuItem admissionsMenuItem = new JMenuItem("Admissions");
