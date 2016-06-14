@@ -11,7 +11,7 @@ public class staff extends Users{
     
     public boolean authenticate(String username, char[]password){
         String sql;
-        sql = "SELECT username, password FROM staff WHERE username = ? AND password = ? ";
+        sql = "SELECT user_group, username, password FROM user_credentials WHERE username = ? AND password = PASSWORD(?)";
         try {
             connect();
             preparedstatement = connection.prepareStatement(sql);

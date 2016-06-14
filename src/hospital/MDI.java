@@ -287,6 +287,8 @@ public class MDI extends JFrame{
         accountsMenu.add(purchasesMenuItem);
         accountsMenu.add(supplierInvoicesMenuItem);
         
+        accountsMenu.setEnabled(false);
+        
         menuBar.add(housekeepingMenu);
         
         menuBar.add(lastofficeMenu);

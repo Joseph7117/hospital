@@ -1,14 +1,19 @@
 
 package hospital;
 
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
@@ -26,6 +31,7 @@ public class Toolbar extends JToolBar{
     private JButton report_status;
     private JButton information;
     private JButton help;
+    private JLabel nameLabel;
     
     public Toolbar(){
         super();
@@ -90,6 +96,10 @@ public class Toolbar extends JToolBar{
         help.setIcon(createIcon("/images/help.png"));
         help.setToolTipText("Help");
         
+        nameLabel = new JLabel("Welcome, Joseph");
+        nameLabel.setFont(new Font("Serif", Font.PLAIN, 15));
+        nameLabel.setHorizontalAlignment(JLabel.RIGHT);
+        
         add(patientsButton);
         addSeparator();
         add(physiciansButton);
@@ -143,6 +153,8 @@ public class Toolbar extends JToolBar{
         add(information);
         addSeparator();
         add(help);
+        
+        add(nameLabel);
         
         
         setLayout(new FlowLayout(FlowLayout.LEFT));
