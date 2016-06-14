@@ -2,6 +2,8 @@
 package hospital;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -32,9 +37,10 @@ public class MDI extends JFrame{
     private JDialog registerStaff;
     private JDialog registerPatient;
     private JDialog registerDoctor;
+    private JDialog helpCon;
     
     //constructor function for the MDI
-    public MDI(){
+    public MDI() throws IOException{
         super("Hospital Information Management System");
         
         setLayout(new BorderLayout());
@@ -50,6 +56,7 @@ public class MDI extends JFrame{
         registerStaff = new Registerstaff(this);
         registerPatient = new RegisterPatient(this);
         registerDoctor = new RegisterDoctor(this);
+        helpCon = new helpContents(this);
         
         
         addWindowListener(new WindowAdapter(){
@@ -429,11 +436,51 @@ public class MDI extends JFrame{
         menuBar.add(helpMenu);
         
         JMenuItem helpContentsMenuItem = new JMenuItem("Help Contents");
+        helpContentsMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                helpCon.setVisible(true);
+            }
+        });
+        
         JMenuItem docsContentMenuItem = new JMenuItem("Health Documents and Support");
         JMenuItem keyboardShortcutMenuItem = new JMenuItem("KeyBoard Shortcuts Card");
+        keyboardShortcutMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(Desktop.isDesktopSupported()){
+                    try{
+                        ClassLoader classLoader = getClass().getClassLoader();
+                        File shortCuts = new File(classLoader.getResource("pdfs/Keyboard_Shortcuts.pdf").getFile());
+                        Desktop.getDesktop().open(shortCuts);
+                    }catch(IOException e){
+                        //no application has been registered to open pdf files
+                    }
+                }
+            }
+        });
         JMenuItem reportIssueMenuItem = new JMenuItem("Report Issue");
+        reportIssueMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String urlString ="http://localhost/reporting/index.php";
+                try{
+                    Desktop.getDesktop().browse(new URL(urlString).toURI());
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
         JMenuItem healthReferencesMenuItem = new JMenuItem("Health References");
         JMenuItem healthSearchMenuItem = new JMenuItem("Search Health Issues");
+        healthSearchMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
         JMenuItem checkUpdatesMenuItem = new JMenuItem("Check Updates");
         JMenuItem aboutMenuItem = new JMenuItem("About");
         aboutMenuItem.addActionListener(new ActionListener (){
