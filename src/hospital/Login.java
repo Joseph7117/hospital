@@ -9,6 +9,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -53,7 +58,11 @@ public class Login extends JFrame implements ActionListener{
                 
                 staff stf =new staff();
                 if(stf.authenticate(username, password) == true){
-                    new MDI().setVisible(true);
+                    try {
+                        new MDI().setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     dispose();
                     System.gc();
                 }else{
@@ -64,6 +73,15 @@ public class Login extends JFrame implements ActionListener{
                 }
             }
             
+        });
+        
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent a){
+                System.out.println("Application Closing");
+                dispose();
+                System.gc();
+            }
         });
         getRootPane().setDefaultButton(loginButton);
         

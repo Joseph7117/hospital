@@ -149,6 +149,7 @@ public class Registerstaff extends JDialog{
         JDatePickerImpl datePicker2 = new JDatePickerImpl(datePanel2);
         JFormattedTextField textField2 = datePicker2.getJFormattedTextField();
         textField2.setPreferredSize(new Dimension(110, 22));
+        model2.setSelected(true);
         
         Box buttonBox = Box.createHorizontalBox();
         buttonBox.add(saveButton);

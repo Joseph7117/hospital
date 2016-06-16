@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hospital;
 
 import java.awt.BorderLayout;
@@ -119,6 +114,7 @@ public class RegisterPatient extends JDialog{
         JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
         JFormattedTextField textField1 = datePicker1.getJFormattedTextField();
         textField1.setPreferredSize(new Dimension(110, 22));
+        model1.setSelected(true);
         
         JPanel patientsPanel = new JPanel();
         JPanel sponsorPanel = new JPanel();
