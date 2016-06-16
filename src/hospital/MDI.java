@@ -37,11 +37,8 @@ public class MDI extends JFrame{
     private JDialog registerStaff;
     private JDialog registerPatient;
     private JDialog registerDoctor;
-<<<<<<< HEAD
     private JDialog registerSupplier;
-=======
     private JDialog helpCon;
->>>>>>> origin/master
     
     //constructor function for the MDI
     public MDI() throws IOException{
@@ -60,11 +57,8 @@ public class MDI extends JFrame{
         registerStaff = new Registerstaff(this);
         registerPatient = new RegisterPatient(this);
         registerDoctor = new RegisterDoctor(this);
-<<<<<<< HEAD
-        registerSupplier=new Registersupplier(this);   
-=======
+        registerSupplier=new Registersupplier(this);
         helpCon = new helpContents(this);
->>>>>>> origin/master
         
         
         addWindowListener(new WindowAdapter(){
