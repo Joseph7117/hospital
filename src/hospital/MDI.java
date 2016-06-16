@@ -32,6 +32,7 @@ public class MDI extends JFrame{
     private JDialog registerStaff;
     private JDialog registerPatient;
     private JDialog registerDoctor;
+    private JDialog registerSupplier;
     
     //constructor function for the MDI
     public MDI(){
@@ -43,13 +44,14 @@ public class MDI extends JFrame{
         toolbar = new Toolbar();
         statusBar = new StatusBar();
         leftFormPanel = new FormPanel();
-        framesPanel = new RightFrame();
+        framesPanel=new RightFrame();
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftFormPanel, framesPanel);
         splitPane.setOneTouchExpandable(true);
         fileChooser = new JFileChooser();
         registerStaff = new Registerstaff(this);
         registerPatient = new RegisterPatient(this);
         registerDoctor = new RegisterDoctor(this);
+        registerSupplier=new Registersupplier(this);   
         
         
         addWindowListener(new WindowAdapter(){
@@ -146,6 +148,17 @@ public class MDI extends JFrame{
         
         });
         
+        JMenuItem registerSupplierItem=new JMenuItem("Register New Supplier");
+        registerSupplierItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        registerSupplierItem.setIcon(new ImageIcon(this.getClass().getResource("/images/doctor.png")));
+        registerSupplierItem.addActionListener(new ActionListener() {
+           
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                registerSupplier.setVisible(true);
+            }
+        });
+        
         JMenuItem importDataItem = new JMenuItem("Import Patients' Records");
         importDataItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
         importDataItem.setIcon(new ImageIcon(this.getClass().getResource("/images/import.png")));
@@ -204,6 +217,7 @@ public class MDI extends JFrame{
         registrationMenu.add(registerNewPatientItem);
         registrationMenu.add(registerDataItem);
         registrationMenu.add(registerDoctorItem);
+        registrationMenu.add(registerSupplierItem);
         registrationMenu.addSeparator();
         registrationMenu.add(importDataItem);
         registrationMenu.add(importStaffItem);
