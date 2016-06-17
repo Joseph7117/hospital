@@ -2,7 +2,6 @@
 package hospital;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -15,6 +14,7 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -229,7 +229,7 @@ public class MDI extends JFrame{
         registrationMenu.add(importDataItem);
         registrationMenu.add(importStaffItem);
         registrationMenu.addSeparator();
-        registrationMenu.add(exportDataItem); 
+            registrationMenu.add(exportDataItem); 
         registrationMenu.add(exportStaffItem);
         registrationMenu.addSeparator();
         registrationMenu.add(closeShiftItem);
@@ -237,13 +237,117 @@ public class MDI extends JFrame{
         
         menuBar.add(consultationMenu);
         
+        JMenuItem newConsultation = new JMenuItem("New Consultation");
+        newConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        newConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/newconsultation.png")));
+
+        JMenuItem crossCheckConsultation = new JMenuItem("Cross Check");
+        crossCheckConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        crossCheckConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/crosscheck.png")));
+        
+        consultationMenu.add(newConsultation);
+        consultationMenu.addSeparator();
+        consultationMenu.add(crossCheckConsultation);
+        
         menuBar.add(patientsMenu);
+        
+        JMenuItem registeredPatients = new JMenuItem("Registered Patients");
+        registeredPatients.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        registeredPatients.setIcon(new ImageIcon(this.getClass().getResource("/images/registered.png")));
+        
+        JMenuItem registeredAssignedPatients = new JMenuItem("Registered | Assigned");
+        registeredAssignedPatients.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        registeredAssignedPatients.setIcon(new ImageIcon(this.getClass().getResource("/images/registeredassigned.png")));
+        
+        JMenuItem patientsDiagnostics = new JMenuItem("Diagnostics");
+        patientsDiagnostics.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        patientsDiagnostics.setIcon(new ImageIcon(this.getClass().getResource("/images/diagnostic.png")));
+        
+        JMenuItem prescriptions = new JMenuItem("Patients Prescriptions");
+        prescriptions.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        prescriptions.setIcon(new ImageIcon(this.getClass().getResource("/images/prescriptions.png")));
+        
+        JMenuItem patientsHistory = new JMenuItem("Patients History");
+        patientsHistory.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        patientsHistory.setIcon(new ImageIcon(this.getClass().getResource("/images/history.png")));
+        
+        patientsMenu.add(registeredPatients);
+        patientsMenu.add(registeredAssignedPatients);
+        patientsMenu.addSeparator();
+        patientsMenu.add(patientsDiagnostics);
+        patientsMenu.add(prescriptions);
+        patientsMenu.addSeparator();
+        patientsMenu.add(patientsHistory);
         
         menuBar.add(labMenu);
         
+        JMenuItem labRequests = new JMenuItem("Lab Requests");
+        labRequests.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        labRequests.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        
+        JMenuItem labReports = new JMenuItem("Lab Reports");
+        labReports.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        labReports.setIcon(new ImageIcon(this.getClass().getResource("/images/labreports.png")));
+        
+        JMenuItem labCategories = new JMenuItem("Lab Categories");
+        labCategories.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        labCategories.setIcon(new ImageIcon(this.getClass().getResource("/images/labcategories.png")));
+        
+        JMenuItem manageLabs = new JMenuItem("Manage Labs");
+        manageLabs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        manageLabs.setIcon(new ImageIcon(this.getClass().getResource("/images/manage.png")));
+        
+        labMenu.add(labRequests);
+        labMenu.add(labReports);
+        labMenu.addSeparator();
+        labMenu.add(labCategories);
+        labMenu.addSeparator();
+        labMenu.add(manageLabs);
+        
         menuBar.add(wardDetailsMenu);
+        
+        JMenuItem wardRequests = new JMenuItem("Ward Requests");
+        wardRequests.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        wardRequests.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        
+        JMenuItem wardsAvailable = new JMenuItem("Wards Available");
+        wardsAvailable.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        wardsAvailable.setIcon(new ImageIcon(this.getClass().getResource("/images/wardavailable.png")));
+        
+        JMenuItem wardsOccupied = new JMenuItem("Wards Occupied");
+        wardsOccupied.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        wardsOccupied.setIcon(new ImageIcon(this.getClass().getResource("/images/wardoccupied.png")));
+        
+        JMenuItem wardsCategories = new JMenuItem("Wards Categories");
+        wardsCategories.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        wardsCategories.setIcon(new ImageIcon(this.getClass().getResource("/images/labcategories.png")));
+        
+        JMenuItem manageWards = new JMenuItem("Manage Wards");
+        manageWards.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        manageWards.setIcon(new ImageIcon(this.getClass().getResource("/images/manage.png")));
+        
+        wardDetailsMenu.add(wardRequests);
+        wardDetailsMenu.addSeparator();
+        wardDetailsMenu.add(wardsAvailable);
+        wardDetailsMenu.add(wardsOccupied);
+        wardDetailsMenu.addSeparator();
+        wardDetailsMenu.add(wardsCategories);
+        wardDetailsMenu.addSeparator();
+        wardDetailsMenu.add(manageWards);
          
         menuBar.add(pharmaceuticalMenu);
+        
+        JMenuItem pharmacyRequests = new JMenuItem("Pharmacy Requests");
+        pharmacyRequests.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+        pharmacyRequests.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        
+        JMenuItem pharmacyInventory = new JMenuItem("Pharmacy Inventory");
+        pharmacyInventory.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
+        pharmacyInventory.setIcon(new ImageIcon(this.getClass().getResource("/images/inventory.png")));
+        
+        pharmaceuticalMenu.add(pharmacyRequests);
+        pharmaceuticalMenu.addSeparator();
+        pharmaceuticalMenu.add(pharmacyInventory);
          
         menuBar.add(accountsMenu);
                 
@@ -301,11 +405,46 @@ public class MDI extends JFrame{
         accountsMenu.add(purchasesMenuItem);
         accountsMenu.add(supplierInvoicesMenuItem);
         
-        accountsMenu.setEnabled(false);
         
         menuBar.add(housekeepingMenu);
         
+        JMenuItem storeMenuItem = new JMenuItem("Housekeeping Store");
+        storeMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
+        storeMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/store.png")));
+        
+        JMenuItem storeInventory = new JMenuItem("Store Inventory");
+        storeInventory.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
+        storeInventory.setIcon(new ImageIcon(this.getClass().getResource("/images/inventory.png")));
+        
+        housekeepingMenu.add(storeMenuItem);
+        housekeepingMenu.addSeparator();
+        housekeepingMenu.add(storeInventory);
+        
         menuBar.add(lastofficeMenu);
+        
+        JMenuItem newEntryItem = new JMenuItem("New Entry");
+        newEntryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.ALT_MASK));
+        newEntryItem.setIcon(new ImageIcon(this.getClass().getResource("/images/newentry.png")));
+        
+        JMenuItem lastOfficeRecords = new JMenuItem("Lastoffice Records");
+        lastOfficeRecords.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
+        lastOfficeRecords.setIcon(new ImageIcon(this.getClass().getResource("/images/lastofficerecords.png")));
+        
+        JMenuItem autopsyItem = new JMenuItem("Autopsy");
+        autopsyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.ALT_MASK));
+        autopsyItem.setIcon(new ImageIcon(this.getClass().getResource("/images/autopsy.png")));
+        
+        JMenuItem postmotermItem = new JMenuItem("Postmoterm");
+        postmotermItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.ALT_MASK));
+        postmotermItem.setIcon(new ImageIcon(this.getClass().getResource("/images/postmoterm.png")));
+        
+        lastofficeMenu.add(newEntryItem);
+        lastofficeMenu.addSeparator();
+        lastofficeMenu.add(lastOfficeRecords);
+        lastofficeMenu.addSeparator();
+        lastofficeMenu.add(autopsyItem);
+        lastofficeMenu.add(postmotermItem);
+        
         
         menuBar.add(dataReportMenu);
         JMenuItem admissionsMenuItem = new JMenuItem("Admissions");

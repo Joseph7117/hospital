@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/RightFrame.java</file>
             <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/Registerstaff.java</file>
             <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/Dashboard.java</file>
@@ -11,6 +12,15 @@
             <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
             <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/RegisterDoctor.java</file>
             <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/Registersupplier.java</file>
+=======
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/Consultation_Form.java</file>
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/WardInformation.java</file>
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/MDI.java</file>
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/FormPanel.java</file>
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/Toolbar.java</file>
+            <file>file:/home/offline/NetBeansProjects/hospital/src/hospital/SplashScreen.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>
