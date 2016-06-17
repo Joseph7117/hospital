@@ -91,7 +91,7 @@ public class RegisterPatient extends JDialog{
         sponsorFirstName = new JLabel("First Name:");                           sponsorFirstNameTextField.setMinimumSize(new Dimension(200, 20));       sponsorAddressNumberField.setLineWrap(true);                                        DefaultComboBoxModel honorificModel =new DefaultComboBoxModel();
         sponsorIdNumber = new JLabel("ID Number: ");                            sponsorIdNumberTextField = new JTextField(15);                          sponsorAddressNumberField.setWrapStyleWord(true);                                   honorificModel.addElement("Mr.");
         sponsorMobileNumber = new JLabel("Mobile Number: ");                    sponsorIdNumberTextField.setMinimumSize(new Dimension(200, 20));        sponsorAddressNumberField.setBorder(BorderFactory.createLineBorder(Color.gray));    honorificModel.addElement("Miss");
-        sponsorEmailAddress = new JLabel("Email Address: ");                      sponsorMobileNumberTextField = new JTextField(15);                                                                                                          honorificModel.addElement("Mrs");
+        sponsorEmailAddress = new JLabel("Email Address: ");                    sponsorMobileNumberTextField = new JTextField(15);                                                                                                          honorificModel.addElement("Mrs");
         sponsorAddressNumber = new JLabel("Address: ");                         sponsorMobileNumberTextField.setMinimumSize(new Dimension(200, 20));                                                                                        sponsorHonorifics.setModel(honorificModel);
                                                                                 sponsorEmailAddressTextField = new JTextField(15);
                                                                                 sponsorEmailAddressTextField.setMinimumSize(new Dimension(200, 20));
@@ -137,14 +137,14 @@ public class RegisterPatient extends JDialog{
         
         patientsPanel.setLayout(new GridBagLayout());
         
-        addGridItems(patientsPanel, firstName, 0,0,1,1, GridBagConstraints.EAST);          addGridItems(patientsPanel, mobileNumber, 3,0,1,1, GridBagConstraints.EAST);               addGridItems(patientsPanel, avatar, 6,0,1,2, GridBagConstraints.EAST);
-        addGridItems(patientsPanel, firstNameField, 1,0,2,1, GridBagConstraints.WEST);     addGridItems(patientsPanel, mobileNumberField, 4,0,2,1, GridBagConstraints.WEST);
+        addGridItems(patientsPanel, firstName, 0,0,1,1, GridBagConstraints.EAST);            addGridItems(patientsPanel, mobileNumber, 3,0,1,1, GridBagConstraints.EAST);               addGridItems(patientsPanel, avatar, 6,0,1,2, GridBagConstraints.EAST);
+        addGridItems(patientsPanel, firstNameField, 1,0,2,1, GridBagConstraints.WEST);       addGridItems(patientsPanel, mobileNumberField, 4,0,2,1, GridBagConstraints.WEST);
         
-        addGridItems(patientsPanel, middleName, 0,1,1,1, GridBagConstraints.EAST);         addGridItems(patientsPanel, registrationNumber, 3,1,1,1, GridBagConstraints.EAST);
-        addGridItems(patientsPanel, middleNameField, 1,1,2,1, GridBagConstraints.WEST);    addGridItems(patientsPanel, registrationNumberField, 4,1,2,1, GridBagConstraints.WEST);
+        addGridItems(patientsPanel, middleName, 0,1,1,1, GridBagConstraints.EAST);           addGridItems(patientsPanel, registrationNumber, 3,1,1,1, GridBagConstraints.EAST);
+        addGridItems(patientsPanel, middleNameField, 1,1,2,1, GridBagConstraints.WEST);      addGridItems(patientsPanel, registrationNumberField, 4,1,2,1, GridBagConstraints.WEST);
         
-        addGridItems(patientsPanel, lastName, 0,2,1,1, GridBagConstraints.EAST);            addGridItems(patientsPanel, idNumber, 3,2,1,1, GridBagConstraints.EAST);
-        addGridItems(patientsPanel, lastNameField, 1,2,2,1, GridBagConstraints.WEST);       addGridItems(patientsPanel, idNumberField, 4,2,2,1, GridBagConstraints.WEST);
+        addGridItems(patientsPanel, lastName, 0,2,1,1, GridBagConstraints.EAST);             addGridItems(patientsPanel, idNumber, 3,2,1,1, GridBagConstraints.EAST);
+        addGridItems(patientsPanel, lastNameField, 1,2,2,1, GridBagConstraints.WEST);        addGridItems(patientsPanel, idNumberField, 4,2,2,1, GridBagConstraints.WEST);
         
         addGridItems(patientsPanel, addressNumber, 0,3,1,1, GridBagConstraints.EAST);        addGridItems(patientsPanel, registrationDate, 3,3,1,1, GridBagConstraints.EAST);
         addGridItems(patientsPanel, addressNumberField, 1,3,2,1, GridBagConstraints.WEST);   addGridItems(patientsPanel, datePicker1, 4,3,2,1, GridBagConstraints.WEST);
@@ -155,7 +155,6 @@ public class RegisterPatient extends JDialog{
         addGridItems(patientsPanel, gender, 0,5,1,1,GridBagConstraints.EAST);
         addGridItems(patientsPanel, maleRadioButton, 1,5,2,1, GridBagConstraints.WEST);
         addGridItems(patientsPanel, femaleRadioButton,1,5,2,1, GridBagConstraints.CENTER);
-        
         
         addGridItems(patientsPanel, nationality, 0,6,1,1, GridBagConstraints.EAST);
         addGridItems(patientsPanel, nationalityField, 1,6,2,1, GridBagConstraints.WEST);
