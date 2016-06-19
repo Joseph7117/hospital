@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -18,10 +20,10 @@ import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -89,11 +91,11 @@ public class RegisterPatient extends JDialog{
         //Sponsor Details:
         sponsorhonorifics = new JLabel("Honorific:");                           sponsorFirstNameTextField = new JTextField(15);                        sponsorAddressNumberField = new JTextArea(6,10);                                     sponsorHonorifics = new JComboBox();
         sponsorFirstName = new JLabel("First Name:");                           sponsorFirstNameTextField.setMinimumSize(new Dimension(200, 20));       sponsorAddressNumberField.setLineWrap(true);                                        DefaultComboBoxModel honorificModel =new DefaultComboBoxModel();
-        sponsorIdNumber = new JLabel("ID Number: ");                            sponsorIdNumberTextField = new JTextField(15);                          sponsorAddressNumberField.setWrapStyleWord(true);                                   honorificModel.addElement("Mr.");
-        sponsorMobileNumber = new JLabel("Mobile Number: ");                    sponsorIdNumberTextField.setMinimumSize(new Dimension(200, 20));        sponsorAddressNumberField.setBorder(BorderFactory.createLineBorder(Color.gray));    honorificModel.addElement("Miss");
-        sponsorEmailAddress = new JLabel("Email Address: ");                    sponsorMobileNumberTextField = new JTextField(15);                                                                                                          honorificModel.addElement("Mrs");
-        sponsorAddressNumber = new JLabel("Address: ");                         sponsorMobileNumberTextField.setMinimumSize(new Dimension(200, 20));                                                                                        sponsorHonorifics.setModel(honorificModel);
-                                                                                sponsorEmailAddressTextField = new JTextField(15);
+        sponsorIdNumber = new JLabel("ID Number: ");                            sponsorIdNumberTextField = new JTextField(15);                          sponsorAddressNumberField.setWrapStyleWord(true);                                   honorificModel.addElement("Select");
+        sponsorMobileNumber = new JLabel("Mobile Number: ");                    sponsorIdNumberTextField.setMinimumSize(new Dimension(200, 20));        sponsorAddressNumberField.setBorder(BorderFactory.createLineBorder(Color.gray));    honorificModel.addElement("Mr.");
+        sponsorEmailAddress = new JLabel("Email Address: ");                    sponsorMobileNumberTextField = new JTextField(15);                                                                                                          honorificModel.addElement("Miss");
+        sponsorAddressNumber = new JLabel("Address: ");                         sponsorMobileNumberTextField.setMinimumSize(new Dimension(200, 20));                                                                                        honorificModel.addElement("Mrs.");
+                                                                                sponsorEmailAddressTextField = new JTextField(15);                                                                                                          sponsorHonorifics.setModel(honorificModel);
                                                                                 sponsorEmailAddressTextField.setMinimumSize(new Dimension(200, 20));
                                                                                 
                                                                                 
@@ -123,6 +125,46 @@ public class RegisterPatient extends JDialog{
         patientsPanel.setBackground(Color.white);
         sponsorPanel.setBackground(Color.white);
         buttonsPanel.setBackground(Color.WHITE);
+
+saveButton.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                //it it return true
+                validate_fields();
+                if (Boolean.valueOf(validate_fields()==true)) {                    
+                    JOptionPane.showConfirmDialog(RegisterPatient.this, "Do you really want to save this information","Save Patient Details", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Information Saved","Save", JOptionPane.PLAIN_MESSAGE);
+                    
+                    firstNameField.setText("");
+                    middleNameField.setText("");
+                    lastNameField.setText("");
+                    idNumberField.setText("");
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Fill All Fields","ALERT", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                //save to the database;
+            }
+        
+        });
+        
+        cancelButton.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int action = JOptionPane.showConfirmDialog(RegisterPatient.this, "Do you really want to cancel the registration process", "Cancel Registration", 
+                        JOptionPane.OK_CANCEL_OPTION);
+                if(action == JOptionPane.OK_OPTION){
+                    dispose();
+                    System.gc();
+                }
+            }
+        
+        });
+        
         
         int space = 15;
         Border spaceBorder = BorderFactory.createEmptyBorder(space, space, space, space);

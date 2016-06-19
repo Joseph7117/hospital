@@ -13,7 +13,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javafx.scene.input.ScrollEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -42,25 +41,30 @@ public class Registersupplier extends JDialog{
     super(parent, "Register New Supplier", false);
     
     supplieId=new JLabel("Supplier ID: ");                      supplierIdField=new JTextField(20);
+                                                                supplierIdField.setMinimumSize(new Dimension(200,20));
     supplierName=new JLabel("Supplier Name: ");                 supplierNameField=new JTextField(20);
-    addressNo=new JLabel("Address Number: ");                   addressNoArea=new JTextArea(6,20);
-                                                                JFrame frame=new JFrame();
-                                                                frame.add(addressNoArea);
-                                                                frame.setSize(20,20);
+                                                                supplierIdField.setMinimumSize(new Dimension(200,20));
+                                                                addressNoArea=new JTextArea(6,20);
+    addressNo=new JLabel("Address Number: ");                   JFrame frame=new JFrame();
+                                                                frame.setSize(200,200);                                                               
+                                                                frame.setResizable(false);
+                                                                JScrollPane scroll=new JScrollPane(addressNoArea);
+                                                                frame.add(scroll);
                                                                 frame.setVisible(true);
-                                                                addressNoArea.setWrapStyleWord(true);
-                                                                addressNoArea.setLineWrap(true);
-                                                                addressNoArea.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-                                                                    JScrollPane scroll=new JScrollPane(addressNoArea,
-                                                                            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                                                                            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                                                             
-                                                                 scroll.setMinimumSize(new Dimension(200,100));
+                                                                frame.getContentPane().add(addressNoArea);                                                                
+                                                                addressNoArea.setMaximumSize(new Dimension(180,180));                                                    
+                   
+                                                                
     mobileNo=new JLabel("Mobile Number");                       mobileNoField=new JTextField(20);
+                                                                mobileNoField.setMinimumSize(new Dimension(200,20));
     emailAddresss=new JLabel("Email Address");                  emailAddressField=new JTextField(20);
+                                                                emailAddressField.setMinimumSize(new Dimension(200,20));
     postalCode=new JLabel("Postal Code");                       PostalCodeField=new JTextField(20);
+                                                                PostalCodeField.setMinimumSize(new Dimension(200,20));
     mobileNo=new JLabel("Moble Number");                        mobileNoField=new JTextField(20);
+                                                                mobileNoField.setMinimumSize(new Dimension(200,20));
     itemName=new JLabel("Item Name");                           itemNameField=new JTextField(20);
+                                                                itemNameField.setMinimumSize(new Dimension(200,20));
     
     saveButton=new JButton("Save");
     cancelButton=new JButton("Cancel");
@@ -81,6 +85,20 @@ public class Registersupplier extends JDialog{
             public void actionPerformed(ActionEvent ae) {
                 //it it return true
                 validate_fields();
+                if (Boolean.valueOf(validate_fields()==true)) {                    
+                    JOptionPane.showConfirmDialog(Registersupplier.this, "Do you really want to save this information","Save Supplier Details", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showMessageDialog(null, "Information Saved","Save", JOptionPane.PLAIN_MESSAGE);
+                    
+                    supplierIdField.setText("");
+                    supplierNameField.setText("");
+                    mobileNoField.setText("");
+                    emailAddressField.setText("");
+                    PostalCodeField.setText("");
+                    itemNameField.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Fill All Fields","ALERT", JOptionPane.ERROR_MESSAGE);
+                }
                 
                 //save to the database;
             }
@@ -148,7 +166,21 @@ public class Registersupplier extends JDialog{
     }
     
     private boolean validate_fields(){
-    return false;
+        supplierIdField.getText();
+        supplierNameField.getText();
+        mobileNoField.getText();
+        emailAddressField.getText();
+        PostalCodeField.getText();
+        itemNameField.getText();
+        
+        
+        if(supplierIdField.getText().isEmpty() || supplierNameField.getText().isEmpty() || mobileNoField.getText().isEmpty() || 
+                emailAddressField.getText().isEmpty() || PostalCodeField.getText().isEmpty() || itemNameField.getText().isEmpty()) {
+            return false;
+            }
+        else{
+    return true;
+        }
     }
     
     }

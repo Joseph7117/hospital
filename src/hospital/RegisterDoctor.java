@@ -22,7 +22,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -54,7 +53,7 @@ public class RegisterDoctor extends JDialog{
     public RegisterDoctor(JFrame parent){
         super(parent, "Register New Doctor", false);
         
-        firstName=new JLabel("First Name: ");                               firstNameField=new JTextField(20);                                      maleRadioButton=new JRadioButton("Male");           bloodgroupBox=new JComboBox();
+        firstName=new JLabel("First Name: ");                               firstNameField=new JTextField(20);                                       maleRadioButton=new JRadioButton("Male");           bloodgroupBox=new JComboBox();
                                                                             firstNameField.setMinimumSize(new Dimension(200,20));                   maleRadioButton.setSelected(true);                  DefaultComboBoxModel bloodModel=new DefaultComboBoxModel();
         middleName=new JLabel("Middle Name: ");                             middleNameField=new JTextField(20);                                     femaleRadioButton=new JRadioButton("Female");       bloodModel.addElement("A-");
                                                                             middleNameField.setMinimumSize(new Dimension(200,20));                  genderGroup=new ButtonGroup();                      bloodModel.addElement("A+");
