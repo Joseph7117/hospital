@@ -45,13 +45,7 @@ public class Registersupplier extends JDialog{
     supplierName=new JLabel("Supplier Name: ");                 supplierNameField=new JTextField(20);
                                                                 supplierIdField.setMinimumSize(new Dimension(200,20));
                                                                 addressNoArea=new JTextArea(6,20);
-    addressNo=new JLabel("Address Number: ");                   JFrame frame=new JFrame();
-                                                                frame.setSize(200,200);                                                               
-                                                                frame.setResizable(false);
-                                                                JScrollPane scroll=new JScrollPane(addressNoArea);
-                                                                frame.add(scroll);
-                                                                frame.setVisible(true);
-                                                                frame.getContentPane().add(addressNoArea);                                                                
+    addressNo=new JLabel("Address Number: ");                                                           
                                                                 addressNoArea.setMaximumSize(new Dimension(180,180));                                                    
                    
                                                                 
