@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 
@@ -14,6 +15,7 @@ public class Database{
     private final String connectionUrl = "jdbc:mysql://localhost:3306/hospital";
     protected Connection connection = null;
     protected PreparedStatement preparedstatement = null;
+    protected Statement statement = null;
     protected ResultSet results = null;
     
     public Database(){

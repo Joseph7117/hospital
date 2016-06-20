@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -21,7 +23,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -101,6 +102,11 @@ public class RegisterPatient extends JDialog{
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
         
+        addWindowListener(new WindowAdapter() {
+            public void WindowClosing(WindowEvent ae){
+                dispose();
+            }
+        });
                                            
         setSize(800,600);
         setLocationRelativeTo(null);

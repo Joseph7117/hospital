@@ -1,11 +1,13 @@
 package hospital;
 
+import controller.SystemUsersController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,7 +43,7 @@ public class Login extends JFrame implements ActionListener{
     private JSpinner portSpinner;
     private SpinnerNumberModel spinnerModel;
     
-    public Login(){
+    public Login() throws IOException{
         super("LOGIN TO THE MANAGEMENT SYSTEM");   
         userNameLabel = new JLabel("Username: ");
         passwordLabel = new JLabel("Password: ");
@@ -49,6 +52,8 @@ public class Login extends JFrame implements ActionListener{
         passwordField.setEchoChar('*');
         loginButton = new JButton("LOGIN");
         
+        Image img = ImageIO.read(this.getClass().getResource("/images/credentials.png"));
+        
         loginButton.addActionListener(new ActionListener(){
 
             @Override
@@ -56,8 +61,8 @@ public class Login extends JFrame implements ActionListener{
                 String username = userNameTextField.getText().trim();
                 char[] password = passwordField.getPassword();
                 
-                staff stf =new staff();
-                if(stf.authenticate(username, password) == true){
+                SystemUsersController usr =new SystemUsersController();
+                if(usr.authenticate(username, password) == true){
                     try {
                         new MDI().setVisible(true);
                     } catch (IOException ex) {
@@ -104,6 +109,7 @@ public class Login extends JFrame implements ActionListener{
         layoutControls();
         
         setSize(400, 300);
+        setIconImage(img);
         setLocationRelativeTo(null);
         
         setResizable(false);

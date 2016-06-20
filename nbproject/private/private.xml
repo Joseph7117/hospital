@@ -3,23 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
-            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Login.java</file>
-            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Registerstaff.java</file>
-            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/Main.java</file>
-            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
-            <file>file:/C:/Users/Joseph/Documents/NetBeansProjects/hospital/src/hospital/helpContents.java</file>
-=======
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Toolbar.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Login.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/staff.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/backUp.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/helpContents.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Main.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/RightFrame.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Dashboard.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Registerstaff.java</file>
->>>>>>> origin/master
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/OptimizeDatabase.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/userManagement.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/AdminController.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/UserList.java</file>
         </group>
     </open-files>
 </project-private>
