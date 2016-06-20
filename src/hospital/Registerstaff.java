@@ -68,7 +68,7 @@ public class Registerstaff extends JDialog{
         firstNameTextField.setMinimumSize(new Dimension(200, 20));              countryModel.addElement("Kenyan");                                          mobileNumberField.setMinimumSize(new Dimension(200, 20));
         middleNameTextField = new JTextField(20);                               countryModel.addElement("Uganda");
         middleNameTextField.setMinimumSize(new Dimension(200, 20));             countryModel.addElement("Tanzania");                                        idNumberField = new JTextField(20);
-        lastNameTextField = new JTextField(20);                                 countryModel.addElement("Ethipia");                                         idNumberField.setMinimumSize(new Dimension(200, 20));
+        lastNameTextField = new JTextField(20);                                 countryModel.addElement("Ethiopia");                                         idNumberField.setMinimumSize(new Dimension(200, 20));
         lastNameTextField.setMinimumSize(new Dimension(200, 20));               countryModel.addElement("Somalia");
                                                                                 countryField.setModel(countryModel);                                        emailAddressField = new JTextField(20);
                                                                                                                                                             emailAddressField.setMinimumSize(new Dimension(200, 20));
