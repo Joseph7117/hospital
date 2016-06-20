@@ -16,12 +16,9 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-<<<<<<< HEAD
 import javax.imageio.ImageIO;
 import javax.swing.Box;
-=======
 import javax.swing.Icon;
->>>>>>> origin/master
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -433,10 +430,6 @@ public class MDI extends JFrame{
         accountsMenu.add(suppliersMenuItem);
         accountsMenu.add(purchasesMenuItem);
         accountsMenu.add(supplierInvoicesMenuItem);
-<<<<<<< HEAD
-       
-=======
-        
         
         menuBar.add(housekeepingMenu);
         
@@ -451,8 +444,7 @@ public class MDI extends JFrame{
         housekeepingMenu.add(storeMenuItem);
         housekeepingMenu.addSeparator();
         housekeepingMenu.add(storeInventory);
-        
->>>>>>> origin/master
+       
         menuBar.add(lastofficeMenu);
         
         JMenuItem newEntryItem = new JMenuItem("New Entry");

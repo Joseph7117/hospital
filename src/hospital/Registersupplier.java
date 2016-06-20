@@ -44,10 +44,6 @@ public class Registersupplier extends JDialog{
     supplieId=new JLabel("Supplier ID: ");                      supplierIdField=new JTextField(20);
     supplierName=new JLabel("Supplier Name: ");                 supplierNameField=new JTextField(20);
     addressNo=new JLabel("Address Number: ");                   addressNoArea=new JTextArea(6,20);
-                                                                JFrame frame=new JFrame();
-                                                                frame.add(addressNoArea);
-                                                                frame.setSize(20,20);
-                                                                frame.setVisible(true);
                                                                 addressNoArea.setWrapStyleWord(true);
                                                                 addressNoArea.setLineWrap(true);
                                                                 addressNoArea.setBorder(BorderFactory.createLineBorder(Color.GRAY));
