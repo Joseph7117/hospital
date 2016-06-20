@@ -1,9 +1,11 @@
 
 package hospital;
 
+import controller.SystemUsersController;
 import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,12 +16,15 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -39,10 +44,17 @@ public class MDI extends JFrame{
     private JDialog registerDoctor;
     private JDialog registerSupplier;
     private JDialog helpCon;
+    private JDialog userMan;
+    private JDialog addDb;
+    private JDialog importDb;
+    private JDialog optimizeDb;
+    private JDialog networkSearch;
+    private JDialog backUpDB;
     
     //constructor function for the MDI
     public MDI() throws IOException{
         super("Hospital Information Management System");
+        Image img = ImageIO.read(this.getClass().getResource("/images/hospital.png"));
         
         setLayout(new BorderLayout());
         
@@ -59,8 +71,12 @@ public class MDI extends JFrame{
         registerDoctor = new RegisterDoctor(this);
         registerSupplier=new Registersupplier(this);
         helpCon = new helpContents(this);
-        
-        
+        userMan = new userManagement(this);
+        addDb = new AddDatabase(this);
+        importDb = new ImportDatabase(this);
+        optimizeDb = new OptimizeDatabase(this);
+        networkSearch = new NetworkDatabaseSearch(this);
+        backUpDB = new backUp(this);
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
@@ -80,6 +96,7 @@ public class MDI extends JFrame{
         
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setIconImage(img);
         setMinimumSize(new Dimension(1000,650));
         setVisible(true);
     }
@@ -115,9 +132,18 @@ public class MDI extends JFrame{
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMargin(new Insets(5, 5, 5, 5));
         
+        JLabel nameLabel = new JLabel("Welcome, Joseph");
+        
+        
+        String userGroup = SystemUsersController.getUserGroup();
         
         //Menu List Items:
         menuBar.add(registrationMenu);
+        
+        if("Doctor".equals(userGroup)){
+            registrationMenu.setEnabled(false);
+            accountsMenu.setEnabled(false);
+        }
         
         JMenuItem registerNewPatientItem = new JMenuItem("Register New Patient");
         registerNewPatientItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
@@ -405,7 +431,6 @@ public class MDI extends JFrame{
         accountsMenu.add(purchasesMenuItem);
         accountsMenu.add(supplierInvoicesMenuItem);
         
-        
         menuBar.add(housekeepingMenu);
         
         JMenuItem storeMenuItem = new JMenuItem("Housekeeping Store");
@@ -419,7 +444,7 @@ public class MDI extends JFrame{
         housekeepingMenu.add(storeMenuItem);
         housekeepingMenu.addSeparator();
         housekeepingMenu.add(storeInventory);
-        
+       
         menuBar.add(lastofficeMenu);
         
         JMenuItem newEntryItem = new JMenuItem("New Entry");
@@ -541,26 +566,67 @@ public class MDI extends JFrame{
         JMenuItem manageUsers = new JMenuItem("Manage Users");
         manageUsers.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_0, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
         manageUsers.setIcon(new ImageIcon(this.getClass().getResource("/images/users.png")));
+        manageUsers.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                userMan.setVisible(true);
+            }
+        });
         
        JMenuItem dbManagementMenuItem = new JMenuItem("Add New Database");
        dbManagementMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        dbManagementMenuItem.setIcon(new ImageIcon(this.getClass().getResource("/images/database.png")));
+       dbManagementMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                addDb.setVisible(true);
+            }
+        });
        
        JMenuItem importDatabase = new JMenuItem("Import Database");
        importDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        importDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/import_db.png")));
+       importDatabase.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                importDb.setVisible(true);
+            }
+        });
        
        JMenuItem optimizeDatabase = new JMenuItem("Optimize Database");
        optimizeDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        optimizeDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/optimize.png")));
+       optimizeDatabase.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                optimizeDb.setVisible(true);
+            }
+        });
        
        JMenuItem searchNetwork  = new JMenuItem("Search Database on Network");
        searchNetwork.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        searchNetwork.setIcon(new ImageIcon(this.getClass().getResource("/images/search_db.png")));
-       
+       searchNetwork.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                networkSearch.setVisible(true);
+            }
+        });
        JMenuItem backUpDatabase = new JMenuItem("Back-up Database");
        backUpDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_5, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
        backUpDatabase.setIcon(new ImageIcon(this.getClass().getResource("/images/backup.png")));
+       backUpDatabase.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                backUpDB.setVisible(true);
+            }
+        });
        
        JMenuItem restoreDatabase = new JMenuItem("Restore Database");
        restoreDatabase.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_6, ActionEvent.CTRL_MASK + ActionEvent.ALT_MASK));
@@ -658,6 +724,9 @@ public class MDI extends JFrame{
         helpMenu.addSeparator();
         helpMenu.add(checkUpdatesMenuItem);
         helpMenu.add(aboutMenuItem);
+        
+        menuBar.add(Box.createHorizontalGlue());
+        menuBar.add(nameLabel);
         
         return menuBar;
     }
