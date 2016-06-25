@@ -43,14 +43,11 @@ public class Registersupplier extends JDialog{
     supplieId=new JLabel("Supplier ID: ");                      supplierIdField=new JTextField(20);
                                                                 supplierIdField.setMinimumSize(new Dimension(200,20));
     supplierName=new JLabel("Supplier Name: ");                 supplierNameField=new JTextField(20);
-<<<<<<< HEAD
                                                                 supplierIdField.setMinimumSize(new Dimension(200,20));
                                                                 addressNoArea=new JTextArea(6,20);
     addressNo=new JLabel("Address Number: ");                                                           
                                                                 addressNoArea.setMaximumSize(new Dimension(180,180));                                                    
                    
-                                                                
-=======
     addressNo=new JLabel("Address Number: ");                   addressNoArea=new JTextArea(6,20);
                                                                 addressNoArea.setWrapStyleWord(true);
                                                                 addressNoArea.setLineWrap(true);
@@ -60,7 +57,6 @@ public class Registersupplier extends JDialog{
                                                                             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                                                              
                                                                  scroll.setMinimumSize(new Dimension(200,100));
->>>>>>> origin/master
     mobileNo=new JLabel("Mobile Number");                       mobileNoField=new JTextField(20);
                                                                 mobileNoField.setMinimumSize(new Dimension(200,20));
     emailAddresss=new JLabel("Email Address");                  emailAddressField=new JTextField(20);

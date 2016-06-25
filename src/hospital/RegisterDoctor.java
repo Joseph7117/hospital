@@ -80,7 +80,6 @@ public class RegisterDoctor extends JDialog{
         addressnoField=new JTextArea(6,20);
         addressnoField.setLineWrap(true);
         addressnoField.setWrapStyleWord(true);
-        addressnoField.setWrapStyleWord(true);
         addressnoField.setBorder(BorderFactory.createLineBorder(Color.gray)); 
         JScrollPane scroll = new JScrollPane(addressnoField,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,

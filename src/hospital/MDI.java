@@ -45,11 +45,16 @@ public class MDI extends JFrame{
     private JDialog registerSupplier;
     private JDialog helpCon;
     private JDialog userMan;
+    private JDialog patientMan;
     private JDialog addDb;
     private JDialog importDb;
     private JDialog optimizeDb;
     private JDialog networkSearch;
     private JDialog backUpDB;
+    private JDialog diagnosticForm;
+    private JDialog patientsPrescriptions;
+    private JDialog newConsultation;
+    private JDialog patientHistory;
     
     //constructor function for the MDI
     public MDI() throws IOException{
@@ -72,11 +77,18 @@ public class MDI extends JFrame{
         registerSupplier=new Registersupplier(this);
         helpCon = new helpContents(this);
         userMan = new userManagement(this);
+        patientMan=new patientManagement(this);
         addDb = new AddDatabase(this);
         importDb = new ImportDatabase(this);
         optimizeDb = new OptimizeDatabase(this);
         networkSearch = new NetworkDatabaseSearch(this);
         backUpDB = new backUp(this);
+        diagnosticForm=new DiagnosticsForm(this);
+        patientsPrescriptions=new PatientsPrescriptions(this);
+        newConsultation=new NewConsultation(this);
+        patientHistory=new PatientsHistory(this);
+        
+        
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
@@ -255,7 +267,7 @@ public class MDI extends JFrame{
         registrationMenu.add(importDataItem);
         registrationMenu.add(importStaffItem);
         registrationMenu.addSeparator();
-            registrationMenu.add(exportDataItem); 
+        registrationMenu.add(exportDataItem); 
         registrationMenu.add(exportStaffItem);
         registrationMenu.addSeparator();
         registrationMenu.add(closeShiftItem);
@@ -263,15 +275,21 @@ public class MDI extends JFrame{
         
         menuBar.add(consultationMenu);
         
-        JMenuItem newConsultation = new JMenuItem("New Consultation");
-        newConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
-        newConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/newconsultation.png")));
+        JMenuItem newConsultationItem = new JMenuItem("New Consultation");
+        newConsultationItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        newConsultationItem.setIcon(new ImageIcon(this.getClass().getResource("/images/newconsultation.png")));
+        newConsultationItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                newConsultation.setVisible(true);
+            }
+        });
 
         JMenuItem crossCheckConsultation = new JMenuItem("Cross Check");
         crossCheckConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         crossCheckConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/crosscheck.png")));
         
-        consultationMenu.add(newConsultation);
+        consultationMenu.add(newConsultationItem);
         consultationMenu.addSeparator();
         consultationMenu.add(crossCheckConsultation);
         
@@ -280,6 +298,12 @@ public class MDI extends JFrame{
         JMenuItem registeredPatients = new JMenuItem("Registered Patients");
         registeredPatients.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         registeredPatients.setIcon(new ImageIcon(this.getClass().getResource("/images/registered.png")));
+        registeredPatients.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                patientMan.setVisible(true);
+            }
+        });
         
         JMenuItem registeredAssignedPatients = new JMenuItem("Registered | Assigned");
         registeredAssignedPatients.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
@@ -288,14 +312,33 @@ public class MDI extends JFrame{
         JMenuItem patientsDiagnostics = new JMenuItem("Diagnostics");
         patientsDiagnostics.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         patientsDiagnostics.setIcon(new ImageIcon(this.getClass().getResource("/images/diagnostic.png")));
+        patientsDiagnostics.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                diagnosticForm.setVisible(true);
+            }
+        });
         
         JMenuItem prescriptions = new JMenuItem("Patients Prescriptions");
         prescriptions.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         prescriptions.setIcon(new ImageIcon(this.getClass().getResource("/images/prescriptions.png")));
+        prescriptions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                patientsPrescriptions.setVisible(true);
+            }
+        });
         
-        JMenuItem patientsHistory = new JMenuItem("Patients History");
-        patientsHistory.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
-        patientsHistory.setIcon(new ImageIcon(this.getClass().getResource("/images/history.png")));
+        JMenuItem patientsHistoryItem= new JMenuItem("Patients History");
+        patientsHistoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        patientsHistoryItem.setIcon(new ImageIcon(this.getClass().getResource("/images/history.png")));
+        patientsHistoryItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                patientHistory.setVisible(true);
+            }
+        });
+        
         
         patientsMenu.add(registeredPatients);
         patientsMenu.add(registeredAssignedPatients);
@@ -303,7 +346,7 @@ public class MDI extends JFrame{
         patientsMenu.add(patientsDiagnostics);
         patientsMenu.add(prescriptions);
         patientsMenu.addSeparator();
-        patientsMenu.add(patientsHistory);
+        patientsMenu.add(patientsHistoryItem);
         
         menuBar.add(labMenu);
         
