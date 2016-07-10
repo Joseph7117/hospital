@@ -96,6 +96,7 @@ public class DiagnosticsForm extends JDialog{
          
          setSize(625,630);
          setLocationRelativeTo(null);
+         setResizable(false);
          layoutControls();
     }                                                                                                                                                
     
@@ -115,7 +116,7 @@ public class DiagnosticsForm extends JDialog{
        
        diagnosisPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder,titleDiagnosisPanel));
        
-       buttonsPanel.setBorder(BorderFactory.createLineBorder(Color.darkGray));
+       buttonsPanel.setBorder(BorderFactory.createLineBorder(Color.white));
       
        //Diagnosis Panel
        diagnosisPanel.setLayout(new GridBagLayout());

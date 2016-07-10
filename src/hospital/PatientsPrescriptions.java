@@ -5,8 +5,15 @@
  */
 package hospital;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -64,6 +71,7 @@ public class PatientsPrescriptions extends JDialog{
         });
                                            
         setSize(575,345);
+        setResizable(false);
         setLocationRelativeTo(null);
         layoutControls();
         

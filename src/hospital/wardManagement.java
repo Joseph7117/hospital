@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,17 +23,16 @@ import javax.swing.JTabbedPane;
  *
  * @author EL Diablo
  */
-public class patientManagement extends JDialog{
-    private JButton addPatientButton;
-    private JButton AssignDoctorButton;
+public class wardManagement extends JDialog{
+    private JButton addButton;
+    private JButton deleteButton;
     private JTabbedPane tabPane;
-    private PatientList patientList;
+    private WardList wardList;
     private JScrollPane pane;
     
-     public patientManagement(JFrame parent) {
-    super(parent, "Queud Patients", false);
-    
-     addWindowListener(new WindowAdapter() {
+    public wardManagement(JFrame parent){
+    super(parent,"Wards",false);
+    addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent ae){
                     dispose();
@@ -52,26 +50,26 @@ public class patientManagement extends JDialog{
         bottomPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         
         
-        addPatientButton=new JButton("Add Patient");
-        AssignDoctorButton=new JButton("Assign Doctor");
+        addButton=new JButton("Add Ward");
+        deleteButton=new JButton("Delete Ward");
      
          contentPanel.setLayout(new BorderLayout());
         tabPane = new JTabbedPane();
-        patientList=new PatientList();
-        pane = new JScrollPane(patientList);
+        wardList=new WardList();
+        pane = new JScrollPane(wardList);
         pane.setMinimumSize(new Dimension(700,430));
-        tabPane.addTab("Registered Patients", patientList);
+        tabPane.addTab("Registered Patients", wardList);
         
          contentPanel.add(tabPane, BorderLayout.CENTER);
         
          bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-         bottomPanel.add(addPatientButton);
-         bottomPanel.add(AssignDoctorButton);
+         bottomPanel.add(addButton);
+         bottomPanel.add(deleteButton);
          
         setLayout(new BorderLayout());
         add(contentPanel);
         add(bottomPanel, BorderLayout.SOUTH);
         
      }
+    }
     
-     }

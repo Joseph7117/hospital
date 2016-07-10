@@ -5,8 +5,12 @@
  */
 package hospital;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.*;
 import javax.swing.border.Border;
         
@@ -49,6 +53,7 @@ public class PatientsHistory extends JDialog{
     searchButton=new JButton("Search: ");
     
     setSize(900, 350);
+    setResizable(false);
     setLocationRelativeTo(null);
     layoutControls();
     

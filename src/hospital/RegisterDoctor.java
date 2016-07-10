@@ -5,7 +5,6 @@
  */
 package hospital;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Opcodes;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,9 +30,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -91,6 +87,7 @@ public class RegisterDoctor extends JDialog{
         cancelButton=new JButton("Cancel");
         
         setSize(800, 450);
+        setResizable(false);
         setLocationRelativeTo(null);
         layoutControls();
     }

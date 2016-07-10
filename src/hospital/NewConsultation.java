@@ -221,50 +221,12 @@ public class NewConsultation extends JDialog{
             atModel.addElement("Yes ");
             arthritisBox.setModel(atModel);
             
-            /*
-            yesRadioButton = new JRadioButton("Yes");
-            noRadioButton = new JRadioButton("No");
-            //noRadioButton.setSelected(true);
-            highBloodPressureGroup=new  ButtonGroup();
-            highBloodPressureGroup.add(yesRadioButton);
-            highBloodPressureGroup.add(noRadioButton);
-            heartDiseaseGroup=new ButtonGroup();
-            heartDiseaseGroup.add(yesRadioButton);
-            heartDiseaseGroup.add(noRadioButton);
-            highCholesterolGroup=new ButtonGroup();
-            highCholesterolGroup.add(yesRadioButton);
-            highCholesterolGroup.add(noRadioButton);
-            diabetesGroup=new ButtonGroup();
-            diabetesGroup.add(yesRadioButton);
-            diabetesGroup.add(noRadioButton);
-            kidneyDiseaseGroup=new ButtonGroup();
-            kidneyDiseaseGroup.add(yesRadioButton);
-            kidneyDiseaseGroup.add(noRadioButton);
-            asthmaGroup=new ButtonGroup();
-            asthmaGroup.add(yesRadioButton);
-            asthmaGroup.add(noRadioButton);
-            TBGroup=new ButtonGroup();
-            TBGroup.add(yesRadioButton);
-            TBGroup.add(noRadioButton);
-            liverDiseaseGroup=new ButtonGroup();
-            liverDiseaseGroup.add(yesRadioButton);
-            liverDiseaseGroup.add(noRadioButton);
-            bleedingDisorderGroup=new ButtonGroup();
-            bleedingDisorderGroup.add(yesRadioButton);
-            bleedingDisorderGroup.add(noRadioButton);
-            HIVGroup=new ButtonGroup();
-            HIVGroup.add(yesRadioButton);
-            HIVGroup.add(noRadioButton);
-            cancerGroup=new ButtonGroup();
-            cancerGroup.add(yesRadioButton);
-            cancerGroup.add(noRadioButton);
-*/
-            
             //buttons
             saveButton = new JButton("Save");
             cancelButton = new JButton("Cancel");
             
             setSize(1200, 575);
+            setResizable(false);
             setLocationRelativeTo(null);  
             layoutControls();
             
