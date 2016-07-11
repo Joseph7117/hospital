@@ -17,7 +17,6 @@ public class Main {
                 }catch( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e){
                     e.printStackTrace();
                 }   
-        
     }    
     
 }

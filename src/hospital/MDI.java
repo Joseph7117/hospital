@@ -16,9 +16,9 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -50,9 +50,11 @@ public class MDI extends JFrame{
     private JDialog optimizeDb;
     private JDialog networkSearch;
     private JDialog backUpDB;
+    private JDialog pharmacyInv;
+    private JDialog pharmacyRqst;
     
     //constructor function for the MDI
-    public MDI() throws IOException{
+    public MDI() throws IOException, SQLException{
         super("Hospital Information Management System");
         Image img = ImageIO.read(this.getClass().getResource("/images/hospital.png"));
         
@@ -67,7 +69,6 @@ public class MDI extends JFrame{
         splitPane.setOneTouchExpandable(true);
         fileChooser = new JFileChooser();
         registerStaff = new Registerstaff(this);
-        registerPatient = new RegisterPatient(this);
         registerDoctor = new RegisterDoctor(this);
         registerSupplier=new Registersupplier(this);
         helpCon = new helpContents(this);
@@ -77,6 +78,8 @@ public class MDI extends JFrame{
         optimizeDb = new OptimizeDatabase(this);
         networkSearch = new NetworkDatabaseSearch(this);
         backUpDB = new backUp(this);
+        pharmacyInv = new PharmacyInventory(this);
+        pharmacyRqst = new PharmacyRequest(this);
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
@@ -140,9 +143,20 @@ public class MDI extends JFrame{
         //Menu List Items:
         menuBar.add(registrationMenu);
         
-        if("Doctor".equals(userGroup)){
-            registrationMenu.setEnabled(false);
-            accountsMenu.setEnabled(false);
+        if(null != userGroup)switch (userGroup) {
+            case "Doctor":
+                registrationMenu.setEnabled(false);
+                accountsMenu.setEnabled(false);
+                break;
+            case "Nurse":
+                break;
+            case "House-Keeper":
+                break;
+            case "Receptionist":
+                break;
+            case "Admin":
+                
+                break;
         }
         
         JMenuItem registerNewPatientItem = new JMenuItem("Register New Patient");
@@ -152,9 +166,9 @@ public class MDI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                registerPatient.setVisible(true);
+                MDI parent = null;
+                new RegisterPatient(parent).setVisible(true);
             }
-        
         });
         
         JMenuItem registerDataItem = new JMenuItem("Register New Staff");
@@ -255,7 +269,7 @@ public class MDI extends JFrame{
         registrationMenu.add(importDataItem);
         registrationMenu.add(importStaffItem);
         registrationMenu.addSeparator();
-            registrationMenu.add(exportDataItem); 
+        registrationMenu.add(exportDataItem); 
         registrationMenu.add(exportStaffItem);
         registrationMenu.addSeparator();
         registrationMenu.add(closeShiftItem);
@@ -366,10 +380,25 @@ public class MDI extends JFrame{
         JMenuItem pharmacyRequests = new JMenuItem("Pharmacy Requests");
         pharmacyRequests.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
         pharmacyRequests.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        pharmacyRequests.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                pharmacyRqst.setVisible(true);
+            }
+        
+        });
         
         JMenuItem pharmacyInventory = new JMenuItem("Pharmacy Inventory");
         pharmacyInventory.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
         pharmacyInventory.setIcon(new ImageIcon(this.getClass().getResource("/images/inventory.png")));
+        pharmacyInventory.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                pharmacyInv.setVisible(true);
+            }
+        });
         
         pharmaceuticalMenu.add(pharmacyRequests);
         pharmaceuticalMenu.addSeparator();

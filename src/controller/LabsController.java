@@ -5,8 +5,6 @@
  */
 package controller;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Labs;
 
 public class LabsController extends Labs{
@@ -22,7 +20,7 @@ public class LabsController extends Labs{
            connect();
            
        } catch (Exception ex) {
-           Logger.getLogger(LabsController.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
        }
        
    }

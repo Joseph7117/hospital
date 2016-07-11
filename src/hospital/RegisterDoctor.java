@@ -5,7 +5,7 @@
  */
 package hospital;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Opcodes;
+import controller.SystemUsersController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +14,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -32,6 +36,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import model.Item;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -51,7 +56,7 @@ public class RegisterDoctor extends JDialog{
     private JComboBox bloodgroupBox,departmentBox;
     private JButton saveButton,cancelButton;
     
-    public RegisterDoctor(JFrame parent){
+    public RegisterDoctor(JFrame parent) throws SQLException{
         super(parent, "Register New Doctor", false);
         
         firstName=new JLabel("First Name: ");                               firstNameField=new JTextField(20);                                      maleRadioButton=new JRadioButton("Male");           bloodgroupBox=new JComboBox();
@@ -65,11 +70,22 @@ public class RegisterDoctor extends JDialog{
         emailAddress=new JLabel("Email Address: ");                         emailAdressField=new JTextField(20);                                                                                        bloodModel.addElement("O-");
                                                                             emailAdressField.setMinimumSize(new Dimension(200,20));                                                                     bloodModel.addElement("O+");
         academicqualification=new JLabel("Academic Qualification: ");       academicqualificationField=new JTextField(20);                                                                              bloodgroupBox.setModel(bloodModel);
+
                                                                             academicqualificationField.setMinimumSize(new Dimension(200,20));                                                           departmentBox=new JComboBox();
         Specialization=new JLabel("Specialization: ");                      specializationField=new JTextField(20);                                                                                     DefaultComboBoxModel departmentModel=new DefaultComboBoxModel();
-                                                                            specializationField.setMinimumSize(new Dimension(200,20));                                                                  departmentModel.addElement("D1");
-        mobileNo=new JLabel("Mobile Number: ");                             mobileNoField=new JTextField(20);                                                                                           departmentModel.addElement("D2");
-                                                                            mobileNoField.setMinimumSize(new Dimension(200,20));                                                                        departmentModel.addElement("D3");
+                                                                                                                                                                                                                
+            
+                                                                                                                                                                                                        SystemUsersController sc = new SystemUsersController();
+                                                                                                                                                                                                        ResultSet rs = sc.doctorsDepartments();
+                                                                                                                                                                                                        while(rs.next()){
+                                                                                                                                                                                                            String department_name = rs.getString("department_name");
+                                                                                                                                                                                                            Integer department_id = (Integer) rs.getInt("department_id");
+                                                                                                                                                                                                            departmentModel.addElement(new Item(department_id,department_name));
+                                                                                                                                                                             
+                                                                                                                                                                                                        }
+                                                                            specializationField.setMinimumSize(new Dimension(200,20));                                                                                                  
+        mobileNo=new JLabel("Mobile Number: ");                             mobileNoField=new JTextField(20);                                                           
+                                                                            mobileNoField.setMinimumSize(new Dimension(200,20));                          
                                                                                                                                                                                                         departmentBox.setModel(departmentModel);
         gender=new JLabel("Gender");
         bloodgroup=new JLabel("Blood Group: ");
@@ -87,6 +103,13 @@ public class RegisterDoctor extends JDialog{
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setMinimumSize(new Dimension(200,100));
+        
+        
+        addWindowFocusListener(new WindowAdapter(){
+            public void WindowClosing(WindowEvent ae){
+                dispose();
+            }
+        });
         
         
         saveButton=new JButton("Save");

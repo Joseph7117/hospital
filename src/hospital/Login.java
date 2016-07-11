@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -28,7 +29,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
-import model.staff;
 
 public class Login extends JFrame implements ActionListener{
     private JLabel userNameLabel;
@@ -64,7 +64,11 @@ public class Login extends JFrame implements ActionListener{
                 SystemUsersController usr =new SystemUsersController();
                 if(usr.authenticate(username, password) == true){
                     try {
-                        new MDI().setVisible(true);
+                        try {
+                            new MDI().setVisible(true);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                     } catch (IOException ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }

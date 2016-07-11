@@ -10,6 +10,7 @@ package model;
  * @author JOSEPH
  */
 public class SystemUser extends Users{
+    
     private String userName;
     private char [] password;
     public static String userGroup = null;

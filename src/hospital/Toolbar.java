@@ -7,7 +7,10 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -52,6 +55,14 @@ public class Toolbar extends JToolBar{
         physiciansButton = new JButton();
         physiciansButton.setIcon(createIcon("/images/physician.png"));
         physiciansButton.setToolTipText("Physician");
+        physiciansButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                MDI parent = null;
+                new RegisterDoctor(parent).setVisible(true);
+            }
+        });
         
         billingButton = new JButton();
         billingButton.setIcon(createIcon("/images/accounts.png"));
@@ -64,6 +75,18 @@ public class Toolbar extends JToolBar{
         pharmaceutical_add = new JButton();
         pharmaceutical_add.setIcon(createIcon("/images/pill_add.png"));
         pharmaceutical_add.setToolTipText("Add Pharmaceutical Drug");
+        pharmaceutical_add.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                MDI parent = null;
+                try {
+                    new AddDrug(parent).setVisible(true);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         
         pharmaceutical_status = new JButton();
         pharmaceutical_status.setIcon(createIcon("/images/pill.png"));

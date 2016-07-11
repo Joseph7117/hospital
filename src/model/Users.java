@@ -4,24 +4,28 @@ package model;
 import hospital.Database;
 
 abstract public class Users extends Database{
-    private int user_id;
-    private String first_name;
-    private String last_name;
-    private String email;
-    private BloodCategory bloodCategory;
-    private GenderCategory genderCategory;
-    private String phoneNumber;
-    private int id_number;
-    private String address;
-    private String dateOfBirth;
-    private String nationality;
-    private MaritalStatus maritalStatus;
+    protected String user_id;
+    protected String first_name;
+    protected String last_name;
+    protected String email;
+    protected BloodCategory bloodCategory;
+    protected GenderCategory genderCategory;
+    protected String phoneNumber;
+    protected int id_number;
+    protected String address;
+    protected String dateOfBirth;
+    protected String registrationDate;
+    protected String postalCode;
+    protected String city;
+    protected String state;
+    protected String nationality;
+    protected MaritalStatus maritalStatus;
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -97,6 +101,38 @@ abstract public class Users extends Database{
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    
     public String getNationality() {
         return nationality;
     }
