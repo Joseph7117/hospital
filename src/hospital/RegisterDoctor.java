@@ -5,10 +5,7 @@
  */
 package hospital;
 
-<<<<<<< HEAD
 import controller.SystemUsersController;
-=======
->>>>>>> origin/master
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -38,13 +35,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-<<<<<<< HEAD
 import model.Item;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
-=======
->>>>>>> origin/master
 
 /**
  *

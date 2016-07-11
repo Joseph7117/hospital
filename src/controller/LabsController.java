@@ -5,12 +5,9 @@
  */
 package controller;
 
-<<<<<<< HEAD
-=======
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> origin/master
 import model.Labs;
 
 public class LabsController extends Labs{

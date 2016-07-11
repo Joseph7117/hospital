@@ -3,20 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Toolbar.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/LabsController.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/PatientList.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/RightFrame.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/patient.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/PatientsController.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Dashboard.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/RegisterDoctor.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/AdminController.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/Users.java</file>
-=======
-            <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/controller/PatientController.java</file>
-            <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/controller/LabsController.java</file>
-            <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/PatientList.java</file>
-            <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/labManagement.java</file>
-            <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/LabList.java</file>
-            <file>file:/C:/Users/EL%20Diablo/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
->>>>>>> origin/master
         </group>
     </open-files>
 </project-private>

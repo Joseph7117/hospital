@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -60,7 +61,11 @@ public class Toolbar extends JToolBar{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 MDI parent = null;
-                new RegisterDoctor(parent).setVisible(true);
+                try {
+                    new RegisterDoctor(parent).setVisible(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         

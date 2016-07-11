@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class RightFrame extends JPanel{
     private WardInformation wardInfo;
     private JPopupMenu popup1;
     
-    public RightFrame(){
+    public RightFrame() throws SQLException{
            super();
            
            setLayout(new BorderLayout());

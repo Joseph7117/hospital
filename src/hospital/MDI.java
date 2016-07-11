@@ -51,10 +51,8 @@ public class MDI extends JFrame{
     private JDialog optimizeDb;
     private JDialog networkSearch;
     private JDialog backUpDB;
-<<<<<<< HEAD
     private JDialog pharmacyInv;
     private JDialog pharmacyRqst;
-=======
     private JDialog diagnosticForm;
     private JDialog patientsPrescriptions;
     private JDialog newConsultation;
@@ -65,7 +63,6 @@ public class MDI extends JFrame{
     private JDialog wardRequest;
     private JDialog labMan;
     private JDialog wardMan;
->>>>>>> origin/master
     
     //constructor function for the MDI
     public MDI() throws IOException, SQLException{
@@ -93,10 +90,8 @@ public class MDI extends JFrame{
         optimizeDb = new OptimizeDatabase(this);
         networkSearch = new NetworkDatabaseSearch(this);
         backUpDB = new backUp(this);
-<<<<<<< HEAD
         pharmacyInv = new PharmacyInventory(this);
         pharmacyRqst = new PharmacyRequest(this);
-=======
         diagnosticForm=new DiagnosticsForm(this);
         patientsPrescriptions=new PatientsPrescriptions(this);
         newConsultation=new NewConsultation(this);
@@ -108,7 +103,6 @@ public class MDI extends JFrame{
         labMan=new labManagement(this);
         wardMan=new wardManagement(this);
         
->>>>>>> origin/master
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){

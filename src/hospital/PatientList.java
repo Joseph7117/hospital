@@ -5,7 +5,7 @@
  */
 package hospital;
 
-import controller.PatientController;
+import controller.PatientsController;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 import javax.swing.JPanel;
@@ -24,11 +24,13 @@ public class PatientList extends JPanel{
     
     public PatientList(){
         
-        PatientController pat = new PatientController();
+        /*PatientsController pat = new PatientsController();
         try{
         ResultSet rs = pat.list_patients();
         table = new JTable(DbUtils.resultSetToTableModel(rs));
         table.setPreferredScrollableViewportSize(new Dimension(750,500));
+        
+        */
         
         /*
         table.getColumnModel().getColumn(0).setPreferredWidth(900);
@@ -47,7 +49,7 @@ public class PatientList extends JPanel{
         */
         
         
-        table.setRowSelectionAllowed(true);
+        /*table.setRowSelectionAllowed(true);
         table.getTableHeader().setReorderingAllowed(false);
         
         pane = new JScrollPane(table);
@@ -55,6 +57,9 @@ public class PatientList extends JPanel{
         } catch(Exception ex){
             ex.printStackTrace();
         }
+        
     }
+                */
     
+    }
 }
