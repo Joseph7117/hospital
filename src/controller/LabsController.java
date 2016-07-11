@@ -5,6 +5,12 @@
  */
 package controller;
 
+<<<<<<< HEAD
+=======
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+>>>>>>> origin/master
 import model.Labs;
 
 public class LabsController extends Labs{
@@ -14,14 +20,17 @@ public class LabsController extends Labs{
    public void addLab(){
        
    }
-   public void retrieve_labs(){
+   public ResultSet retrieve_labs(){
        String sql = "SELECT * FROM LABS";
        try {
            connect();
+           statement=connection.createStatement();
+           results=statement.executeQuery(sql);
            
        } catch (Exception ex) {
            ex.printStackTrace();
        }
+       return results;
        
-   }
+}
 }

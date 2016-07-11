@@ -1,9 +1,3 @@
-/dist/
-<<<<<<< HEAD
-build/
-=======
-
-build/
-
->>>>>>> origin/master
+build
 build.xml
+/dist/

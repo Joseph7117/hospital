@@ -5,7 +5,10 @@
  */
 package hospital;
 
+<<<<<<< HEAD
 import controller.SystemUsersController;
+=======
+>>>>>>> origin/master
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,7 +29,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,10 +38,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+<<<<<<< HEAD
 import model.Item;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
+=======
+>>>>>>> origin/master
 
 /**
  *
@@ -59,7 +64,7 @@ public class RegisterDoctor extends JDialog{
     public RegisterDoctor(JFrame parent) throws SQLException{
         super(parent, "Register New Doctor", false);
         
-        firstName=new JLabel("First Name: ");                               firstNameField=new JTextField(20);                                      maleRadioButton=new JRadioButton("Male");           bloodgroupBox=new JComboBox();
+        firstName=new JLabel("First Name: ");                               firstNameField=new JTextField(20);                                       maleRadioButton=new JRadioButton("Male");           bloodgroupBox=new JComboBox();
                                                                             firstNameField.setMinimumSize(new Dimension(200,20));                   maleRadioButton.setSelected(true);                  DefaultComboBoxModel bloodModel=new DefaultComboBoxModel();
         middleName=new JLabel("Middle Name: ");                             middleNameField=new JTextField(20);                                     femaleRadioButton=new JRadioButton("Female");       bloodModel.addElement("A-");
                                                                             middleNameField.setMinimumSize(new Dimension(200,20));                  genderGroup=new ButtonGroup();                      bloodModel.addElement("A+");
@@ -97,7 +102,6 @@ public class RegisterDoctor extends JDialog{
         addressnoField=new JTextArea(6,20);
         addressnoField.setLineWrap(true);
         addressnoField.setWrapStyleWord(true);
-        addressnoField.setWrapStyleWord(true);
         addressnoField.setBorder(BorderFactory.createLineBorder(Color.gray)); 
         JScrollPane scroll = new JScrollPane(addressnoField,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -116,6 +120,7 @@ public class RegisterDoctor extends JDialog{
         cancelButton=new JButton("Cancel");
         
         setSize(800, 450);
+        setResizable(false);
         setLocationRelativeTo(null);
         layoutControls();
     }

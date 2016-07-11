@@ -45,13 +45,27 @@ public class MDI extends JFrame{
     private JDialog registerSupplier;
     private JDialog helpCon;
     private JDialog userMan;
+    private JDialog patientMan;
     private JDialog addDb;
     private JDialog importDb;
     private JDialog optimizeDb;
     private JDialog networkSearch;
     private JDialog backUpDB;
+<<<<<<< HEAD
     private JDialog pharmacyInv;
     private JDialog pharmacyRqst;
+=======
+    private JDialog diagnosticForm;
+    private JDialog patientsPrescriptions;
+    private JDialog newConsultation;
+    private JDialog patientHistory;
+    private JDialog labCategory;
+    private JDialog labReport;
+    private JDialog labRequest;
+    private JDialog wardRequest;
+    private JDialog labMan;
+    private JDialog wardMan;
+>>>>>>> origin/master
     
     //constructor function for the MDI
     public MDI() throws IOException, SQLException{
@@ -73,13 +87,28 @@ public class MDI extends JFrame{
         registerSupplier=new Registersupplier(this);
         helpCon = new helpContents(this);
         userMan = new userManagement(this);
+        patientMan=new patientManagement(this);
         addDb = new AddDatabase(this);
         importDb = new ImportDatabase(this);
         optimizeDb = new OptimizeDatabase(this);
         networkSearch = new NetworkDatabaseSearch(this);
         backUpDB = new backUp(this);
+<<<<<<< HEAD
         pharmacyInv = new PharmacyInventory(this);
         pharmacyRqst = new PharmacyRequest(this);
+=======
+        diagnosticForm=new DiagnosticsForm(this);
+        patientsPrescriptions=new PatientsPrescriptions(this);
+        newConsultation=new NewConsultation(this);
+        patientHistory=new PatientsHistory(this);
+        labCategory=new LabCategory(this);
+        labReport=new LabReport(this);
+        labRequest=new LabRequest(this);
+        wardRequest=new WardRequest(this);
+        labMan=new labManagement(this);
+        wardMan=new wardManagement(this);
+        
+>>>>>>> origin/master
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
@@ -277,15 +306,21 @@ public class MDI extends JFrame{
         
         menuBar.add(consultationMenu);
         
-        JMenuItem newConsultation = new JMenuItem("New Consultation");
-        newConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
-        newConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/newconsultation.png")));
+        JMenuItem newConsultationItem = new JMenuItem("New Consultation");
+        newConsultationItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        newConsultationItem.setIcon(new ImageIcon(this.getClass().getResource("/images/newconsultation.png")));
+        newConsultationItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                newConsultation.setVisible(true);
+            }
+        });
 
         JMenuItem crossCheckConsultation = new JMenuItem("Cross Check");
         crossCheckConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         crossCheckConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/crosscheck.png")));
         
-        consultationMenu.add(newConsultation);
+        consultationMenu.add(newConsultationItem);
         consultationMenu.addSeparator();
         consultationMenu.add(crossCheckConsultation);
         
@@ -294,6 +329,12 @@ public class MDI extends JFrame{
         JMenuItem registeredPatients = new JMenuItem("Registered Patients");
         registeredPatients.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         registeredPatients.setIcon(new ImageIcon(this.getClass().getResource("/images/registered.png")));
+        registeredPatients.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                patientMan.setVisible(true);
+            }
+        });
         
         JMenuItem registeredAssignedPatients = new JMenuItem("Registered | Assigned");
         registeredAssignedPatients.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
@@ -302,53 +343,103 @@ public class MDI extends JFrame{
         JMenuItem patientsDiagnostics = new JMenuItem("Diagnostics");
         patientsDiagnostics.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         patientsDiagnostics.setIcon(new ImageIcon(this.getClass().getResource("/images/diagnostic.png")));
+        patientsDiagnostics.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                diagnosticForm.setVisible(true);
+            }
+        });
         
-        JMenuItem prescriptions = new JMenuItem("Patients Prescriptions");
-        prescriptions.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
-        prescriptions.setIcon(new ImageIcon(this.getClass().getResource("/images/prescriptions.png")));
+        JMenuItem prescriptionsItem = new JMenuItem("Patients Prescriptions");
+        prescriptionsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        prescriptionsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/prescriptions.png")));
+        prescriptionsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                patientsPrescriptions.setVisible(true);
+            }
+        });
         
-        JMenuItem patientsHistory = new JMenuItem("Patients History");
-        patientsHistory.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
-        patientsHistory.setIcon(new ImageIcon(this.getClass().getResource("/images/history.png")));
+        JMenuItem patientsHistoryItem= new JMenuItem("Patients History");
+        patientsHistoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
+        patientsHistoryItem.setIcon(new ImageIcon(this.getClass().getResource("/images/history.png")));
+        patientsHistoryItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                patientHistory.setVisible(true);
+            }
+        });
+        
         
         patientsMenu.add(registeredPatients);
         patientsMenu.add(registeredAssignedPatients);
         patientsMenu.addSeparator();
         patientsMenu.add(patientsDiagnostics);
-        patientsMenu.add(prescriptions);
+        patientsMenu.add(prescriptionsItem);
         patientsMenu.addSeparator();
-        patientsMenu.add(patientsHistory);
+        patientsMenu.add(patientsHistoryItem);
         
         menuBar.add(labMenu);
         
-        JMenuItem labRequests = new JMenuItem("Lab Requests");
-        labRequests.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
-        labRequests.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        JMenuItem labRequestsItem = new JMenuItem("Lab Requests");
+        labRequestsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        labRequestsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        labRequestsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                labRequest.setVisible(true);
+            }
+        });
         
-        JMenuItem labReports = new JMenuItem("Lab Reports");
-        labReports.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
-        labReports.setIcon(new ImageIcon(this.getClass().getResource("/images/labreports.png")));
+        JMenuItem labReportsItem = new JMenuItem("Lab Reports");
+        labReportsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        labReportsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/labreports.png")));
+        labReportsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                labReport.setVisible(true);
+            }
+        });
         
-        JMenuItem labCategories = new JMenuItem("Lab Categories");
-        labCategories.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
-        labCategories.setIcon(new ImageIcon(this.getClass().getResource("/images/labcategories.png")));
+        JMenuItem labCategoriesItem = new JMenuItem("Lab Categories");
+        labCategoriesItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        labCategoriesItem.setIcon(new ImageIcon(this.getClass().getResource("/images/labcategories.png")));
+        labCategoriesItem.setEnabled(false); 
+        labCategoriesItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                labCategory.setVisible(true);
+            }
+        });
         
-        JMenuItem manageLabs = new JMenuItem("Manage Labs");
-        manageLabs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
-        manageLabs.setIcon(new ImageIcon(this.getClass().getResource("/images/manage.png")));
+        JMenuItem manageLabsItem = new JMenuItem("Manage Labs");
+        manageLabsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        manageLabsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/manage.png")));
+        manageLabsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                labMan.setVisible(true);
+            }
+        });
         
-        labMenu.add(labRequests);
-        labMenu.add(labReports);
+        labMenu.add(labRequestsItem);
+        labMenu.add(labReportsItem);
         labMenu.addSeparator();
-        labMenu.add(labCategories);
+        labMenu.add(labCategoriesItem);
         labMenu.addSeparator();
-        labMenu.add(manageLabs);
+        labMenu.add(manageLabsItem);
         
         menuBar.add(wardDetailsMenu);
         
-        JMenuItem wardRequests = new JMenuItem("Ward Requests");
-        wardRequests.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
-        wardRequests.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        JMenuItem wardRequestsItem = new JMenuItem("Ward Requests");
+        wardRequestsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        wardRequestsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/labrequest.png")));
+        wardRequestsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                wardRequest.setVisible(true);
+            }
+        });
         
         JMenuItem wardsAvailable = new JMenuItem("Wards Available");
         wardsAvailable.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
@@ -361,19 +452,26 @@ public class MDI extends JFrame{
         JMenuItem wardsCategories = new JMenuItem("Wards Categories");
         wardsCategories.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
         wardsCategories.setIcon(new ImageIcon(this.getClass().getResource("/images/labcategories.png")));
+        wardsCategories.setEnabled(false);
         
-        JMenuItem manageWards = new JMenuItem("Manage Wards");
-        manageWards.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
-        manageWards.setIcon(new ImageIcon(this.getClass().getResource("/images/manage.png")));
+        JMenuItem manageWardsItem = new JMenuItem("Manage Wards");
+        manageWardsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
+        manageWardsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/manage.png")));
+        manageWardsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                wardMan.setVisible(true);
+            }
+        });
         
-        wardDetailsMenu.add(wardRequests);
+        wardDetailsMenu.add(wardRequestsItem);
         wardDetailsMenu.addSeparator();
         wardDetailsMenu.add(wardsAvailable);
         wardDetailsMenu.add(wardsOccupied);
         wardDetailsMenu.addSeparator();
         wardDetailsMenu.add(wardsCategories);
         wardDetailsMenu.addSeparator();
-        wardDetailsMenu.add(manageWards);
+        wardDetailsMenu.add(manageWardsItem);
          
         menuBar.add(pharmaceuticalMenu);
         
