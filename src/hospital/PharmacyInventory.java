@@ -1,6 +1,8 @@
 
 package hospital;
 
+import controller.DrugController;
+import controller.PrescriptionsController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,20 +24,31 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.Border;
+import net.proteanit.sql.DbUtils;
 
 public class PharmacyInventory extends JDialog{
     private JPanel topPanel;
     private JPanel leftPanel;
-    private JPanel contentPanel;
+    private JPanel contentPanel, drugsPanel, prescPanel;
     private JPanel buttonsPanel;
     private JButton addDrugBtn, dispenseDrug, orderHistory, undoChanges, printPriceList;
     private CustomTextField searchField;
     private JButton sendMessage, viewCalendar, askDoctor, calculator,email, notepad;
     private JButton okBtn, applyBtn, cancelBtn, helpBtn;
     private AddDrug addDrug;
+    private JTable drgTable, prescTable;
+    private JScrollPane pane, pane1;
+    private DrugController dc;
+    private PrescriptionsController pc;
     
-    public PharmacyInventory(JFrame parent) throws IOException{
+    public PharmacyInventory(JFrame parent) throws IOException, Exception{
         super(parent, "Pharmacy Inventory", false);
+        
+        dc = new DrugController();
+        pc = new PrescriptionsController();
         
         Image img = ImageIO.read(this.getClass().getResource("/images/pharmacy_1.png"));
         
@@ -47,16 +61,31 @@ public class PharmacyInventory extends JDialog{
         
         addDrug = new AddDrug(this);
         
-        setSize(1000, 550);
+        setSize(1200, 600);
         setLocationRelativeTo(null);
         setIconImage(img);
         layoutControls();
     }
-    private void layoutControls(){
+    private void layoutControls() throws Exception{
         topPanel = new JPanel();
         leftPanel = new JPanel();
         contentPanel = new JPanel();
         buttonsPanel = new JPanel();
+        drugsPanel = new JPanel();
+        prescPanel = new JPanel();
+        
+        int space = 15;
+        Border spaceBorder = BorderFactory.createEmptyBorder(space, space, space, space);
+        Border titleDrugsPanel = BorderFactory.createTitledBorder("Available Drugs");
+        Border titlePrescPanel = BorderFactory.createTitledBorder("Prescriptions Issued");
+        
+        drugsPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, titleDrugsPanel));
+        drugsPanel.setBackground(Color.lightGray);
+        drugsPanel.setPreferredSize(new Dimension(800, 250));
+        prescPanel.setBackground(Color.lightGray);
+        prescPanel.setPreferredSize(new Dimension(800, 250));
+        
+        prescPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, titlePrescPanel));
         
         addDrugBtn = new JButton("Add Drug", new ImageIcon(this.getClass().getResource("/images/drug_1.png")));
         addDrugBtn.addActionListener(new ActionListener(){
@@ -73,11 +102,15 @@ public class PharmacyInventory extends JDialog{
         undoChanges = new JButton("Undo Changes", new ImageIcon(this.getClass().getResource("/images/undo.png")));
         printPriceList = new JButton("Print Price-List", new ImageIcon(this.getClass().getResource("/images/tags.png")));
         searchField = new CustomTextField();
-        searchField.setHint("Search By Code....");
+        searchField.setHint("Search Drug By Code....");
  
         
         sendMessage = new JButton("Send Message");
         Dimension btnsize = sendMessage.getPreferredSize();
+        sendMessage.addActionListener((ActionEvent ae) -> {
+            PharmacyInventory parent = null;
+            new SendMessage(parent).setVisible(true);
+        });
         viewCalendar = new JButton("View Calendar");
         viewCalendar.setPreferredSize(btnsize);
         askDoctor = new JButton("Ask Doctor");
@@ -119,6 +152,37 @@ public class PharmacyInventory extends JDialog{
         leftPanel.add(calculator);
         leftPanel.add(email);
         leftPanel.add(notepad);
+        
+        drugsPanel.setLayout(new BorderLayout());
+        ResultSet rsz = dc.find_all();
+        drgTable = new JTable(DbUtils.resultSetToTableModel(rsz));
+        drgTable.setRowSelectionAllowed(true);
+        drgTable.getTableHeader().setReorderingAllowed(true);
+        drgTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        pane = new JScrollPane(drgTable);
+        pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        drugsPanel.add(pane);
+        
+        prescPanel.setLayout(new BorderLayout());
+        ResultSet rsy = pc.find_all();
+        prescTable = new JTable(DbUtils.resultSetToTableModel(rsy));
+        prescTable.setRowSelectionAllowed(true);
+        prescTable.getTableHeader().setReorderingAllowed(true);
+        prescTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        pane1 = new JScrollPane(prescTable);
+        pane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        pane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        prescPanel.add(pane1);
+        
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.add(drugsPanel, BorderLayout.CENTER);
+        contentPanel.add(prescPanel, BorderLayout.SOUTH);
+        
         
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         buttonsPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));

@@ -14,6 +14,7 @@ public class SystemUser extends Users{
     private String userName;
     private char [] password;
     public static String userGroup = null;
+    public static String userId = null;
     
     public SystemUser(){
         super();
@@ -39,7 +40,16 @@ public class SystemUser extends Users{
         return userGroup;
     }
 
-    public void setUserGroup(String userGroup) {
-        this.userGroup = userGroup;
+    public static void setUserGroup(String userGroup) {
+        SystemUser.userGroup = userGroup;
     }
+
+    public static String getUserId() {
+        return userId;
+    }
+
+    public static void setUserId(String userId) {
+        SystemUser.userId = userId;
+    }
+    
 }

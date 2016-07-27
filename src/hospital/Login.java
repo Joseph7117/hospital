@@ -64,12 +64,8 @@ public class Login extends JFrame implements ActionListener{
                 SystemUsersController usr =new SystemUsersController();
                 if(usr.authenticate(username, password) == true){
                     try {
-                        try {
-                            new MDI().setVisible(true);
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
-                    } catch (IOException ex) {
+                        new MDI().setVisible(true);
+                    } catch (Exception ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     dispose();

@@ -36,7 +36,7 @@ public class SystemUsersController extends SystemUser{
         
     }
     public boolean authenticate(String username, char []password){
-        sql = "SELECT user_group, username, password FROM user_credentials WHERE username = ? AND password = PASSWORD(?)";
+        sql = "SELECT user_id, user_group, username, password FROM user_credentials WHERE username = ? AND password = PASSWORD(?)";
         try{
             connect();
             preparedstatement = connection.prepareStatement(sql);
@@ -46,6 +46,7 @@ public class SystemUsersController extends SystemUser{
             results = preparedstatement.executeQuery();
             
               while(results.next()){
+                userId = results.getString("user_id");
                 userGroup = results.getString("user_group");
                 username = results.getString("username");
                 return true;
@@ -69,5 +70,16 @@ public class SystemUsersController extends SystemUser{
      }
     public void saveDoctor(){
         
+    }
+    public ResultSet find_doctors() throws Exception{
+        sql = "SELECT * FROM `doctors`";
+        connect();
+        preparedstatement = connection.prepareStatement(sql);
+        results = preparedstatement.executeQuery();
+        return results;
+    }
+    public ResultSet find_doctors_by_id(String id){
+        
+        return null;
     }
 }

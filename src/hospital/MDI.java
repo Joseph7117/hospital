@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -40,12 +42,11 @@ public class MDI extends JFrame{
     private JSplitPane splitPane;
     private JFileChooser fileChooser;
     private JDialog registerStaff;
-    private JDialog registerPatient;
     private JDialog registerDoctor;
     private JDialog registerSupplier;
     private JDialog helpCon;
     private JDialog userMan;
-    private JDialog patientMan;
+    private JDialog weighIn;
     private JDialog addDb;
     private JDialog importDb;
     private JDialog optimizeDb;
@@ -53,19 +54,15 @@ public class MDI extends JFrame{
     private JDialog backUpDB;
     private JDialog pharmacyInv;
     private JDialog pharmacyRqst;
-    private JDialog diagnosticForm;
-    private JDialog patientsPrescriptions;
     private JDialog newConsultation;
-    private JDialog patientHistory;
     private JDialog labCategory;
-    private JDialog labReport;
-    private JDialog labRequest;
     private JDialog wardRequest;
     private JDialog labMan;
     private JDialog wardMan;
+    private JDialog crossCheck;
     
     //constructor function for the MDI
-    public MDI() throws IOException, SQLException{
+    public MDI() throws IOException, SQLException, Exception{
         super("Hospital Information Management System");
         Image img = ImageIO.read(this.getClass().getResource("/images/hospital.png"));
         
@@ -84,7 +81,7 @@ public class MDI extends JFrame{
         registerSupplier=new Registersupplier(this);
         helpCon = new helpContents(this);
         userMan = new userManagement(this);
-        patientMan=new patientManagement(this);
+        weighIn=new WeighIn(this);
         addDb = new AddDatabase(this);
         importDb = new ImportDatabase(this);
         optimizeDb = new OptimizeDatabase(this);
@@ -92,16 +89,11 @@ public class MDI extends JFrame{
         backUpDB = new backUp(this);
         pharmacyInv = new PharmacyInventory(this);
         pharmacyRqst = new PharmacyRequest(this);
-        diagnosticForm=new DiagnosticsForm(this);
-        patientsPrescriptions=new PatientsPrescriptions(this);
         newConsultation=new NewConsultation(this);
-        patientHistory=new PatientsHistory(this);
         labCategory=new LabCategory(this);
-        labReport=new LabReport(this);
-        labRequest=new LabRequest(this);
         wardRequest=new WardRequest(this);
-        labMan=new labManagement(this);
         wardMan=new wardManagement(this);
+        crossCheck = new CrosscheckConsultation(this);
         
         addWindowListener(new WindowAdapter(){
             @Override
@@ -145,10 +137,14 @@ public class MDI extends JFrame{
         pharmaceuticalMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu accountsMenu = new JMenu("Accounts");
         accountsMenu.setMargin(new Insets(5, 5, 5, 5));
+        accountsMenu.setEnabled(false);
+        
         JMenu housekeepingMenu = new JMenu("House Keeping");
         housekeepingMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu lastofficeMenu = new JMenu("Last Office");
         lastofficeMenu.setMargin(new Insets(5, 5, 5, 5));
+        lastofficeMenu.setEnabled(false);
+        
         JMenu dataReportMenu = new JMenu("Data Report");
         dataReportMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu windowMenu = new JMenu("Window");
@@ -172,13 +168,14 @@ public class MDI extends JFrame{
                 accountsMenu.setEnabled(false);
                 break;
             case "Nurse":
+                registrationMenu.setEnabled(false);
+                accountsMenu.setEnabled(false);
                 break;
             case "House-Keeper":
                 break;
             case "Receptionist":
                 break;
             case "Admin":
-                
                 break;
         }
         
@@ -313,6 +310,13 @@ public class MDI extends JFrame{
         JMenuItem crossCheckConsultation = new JMenuItem("Cross Check");
         crossCheckConsultation.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         crossCheckConsultation.setIcon(new ImageIcon(this.getClass().getResource("/images/crosscheck.png")));
+        crossCheckConsultation.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                crossCheck.setVisible(true);
+            }
+        });
         
         consultationMenu.add(newConsultationItem);
         consultationMenu.addSeparator();
@@ -326,7 +330,7 @@ public class MDI extends JFrame{
         registeredPatients.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                patientMan.setVisible(true);
+                weighIn.setVisible(true);
             }
         });
         
@@ -340,17 +344,28 @@ public class MDI extends JFrame{
         patientsDiagnostics.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                diagnosticForm.setVisible(true);
+                 MDI parent = null;
+                try {
+                    new DiagnosticsForm(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         
-        JMenuItem prescriptionsItem = new JMenuItem("Patients Prescriptions");
+        JMenuItem prescriptionsItem = new JMenuItem("Prescribe Drugs");
         prescriptionsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK + ActionEvent.SHIFT_MASK));
         prescriptionsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/prescriptions.png")));
         prescriptionsItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                patientsPrescriptions.setVisible(true);
+                MDI parent = null;
+                try {
+                    new PatientsPrescriptions(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                
             }
         });
         
@@ -360,7 +375,12 @@ public class MDI extends JFrame{
         patientsHistoryItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                patientHistory.setVisible(true);
+                MDI parent = null;
+                try {
+                    new PatientsHistory(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         
@@ -381,17 +401,24 @@ public class MDI extends JFrame{
         labRequestsItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                labRequest.setVisible(true);
+                MDI parent = null;
+                try {
+                    new LabRequest(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         
         JMenuItem labReportsItem = new JMenuItem("Lab Reports");
         labReportsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK + ActionEvent.SHIFT_MASK));
         labReportsItem.setIcon(new ImageIcon(this.getClass().getResource("/images/labreports.png")));
-        labReportsItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                labReport.setVisible(true);
+        labReportsItem.addActionListener((ActionEvent ae) -> {
+            MDI parent1 = null;
+            try {
+                new LabRequest(parent1).setVisible(true);
+            }catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
         
@@ -412,7 +439,12 @@ public class MDI extends JFrame{
         manageLabsItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                labMan.setVisible(true);
+                MDI parent = null;
+                try {
+                    new LabManagement(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         

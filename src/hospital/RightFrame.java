@@ -1,13 +1,12 @@
 package hospital;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -23,11 +22,11 @@ public class RightFrame extends JPanel{
     private AccountsOverview accountsOverview;
     private PharmaceuticalOverview pharmacyOverview;
     private EpidemiologyReports epidemiologyReports;
-    private PredictiveStates predictiveStates;
+    private HospitalBranches hospitalBranches;
     private WardInformation wardInfo;
     private JPopupMenu popup1;
     
-    public RightFrame() throws SQLException{
+    public RightFrame() throws SQLException, IOException, Exception{
            super();
            
            setLayout(new BorderLayout());
@@ -38,7 +37,7 @@ public class RightFrame extends JPanel{
            accountsOverview = new AccountsOverview();
            pharmacyOverview = new PharmaceuticalOverview();
            epidemiologyReports = new EpidemiologyReports();
-           predictiveStates = new PredictiveStates();
+           hospitalBranches = new HospitalBranches();
            wardInfo = new WardInformation();
            tabPane = new JTabbedPane();
            popup1 = new JPopupMenu();
@@ -141,7 +140,7 @@ public class RightFrame extends JPanel{
            tabPane.addTab("Accounts Overview",new ImageIcon(this.getClass().getResource("/images/accounts.png")), accountsOverview, "Accounts");
            tabPane.addTab("Pharmaceutical Overview",new ImageIcon(this.getClass().getResource("/images/pharmacy.png")), pharmacyOverview, "Pharmacy");
            tabPane.addTab("Epidemiology Reports", new ImageIcon(this.getClass().getResource("/images/epidem.png")), epidemiologyReports, "Epidemiology");
-           tabPane.addTab("Predictive Statistics",new ImageIcon(this.getClass().getResource("/images/predict.png")), predictiveStates, "Predictive Statistics");
+           tabPane.addTab("Hospital Branches",new ImageIcon(this.getClass().getResource("/images/predict.png")), hospitalBranches, "Hospital Branches");
            tabPane.addTab("Ward Information",new ImageIcon(this.getClass().getResource("/images/ward.png")), wardInfo, "Ward Information");
            
            add(tabPane);

@@ -13,21 +13,24 @@ import model.Wards;
  * @author EL Diablo
  */
 public class WardsController extends Wards{
-    public WardsController(){
-    super();
-    }
+    private String sql;
     
-     public ResultSet list_wards(){
-    String sql;
-    sql="SELECT * from Wards";
-    try {
-                connect();
-                statement = connection.createStatement();
-                results =   statement.executeQuery(sql);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return results;    
+    public WardsController(){
+        super();
+    }
+    public ResultSet find_wards() throws Exception{
+        sql = "SELECT * FROM wards";
+        connect();
+        preparedstatement = connection.prepareStatement(sql);
+        results = preparedstatement.executeQuery();
+        return results;
+    }
+    public ResultSet find_requests() throws Exception{
+        sql = "SELECT * FROM `ward_requests`";
+        connect();
+        preparedstatement = connection.prepareStatement(sql);
+        results = preparedstatement.executeQuery();
+        return results;
     }
     
 }

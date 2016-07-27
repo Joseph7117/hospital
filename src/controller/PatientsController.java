@@ -1,8 +1,6 @@
 package controller;
 
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.GenderCategory;
 import model.MaritalStatus;
 import model.patient;
@@ -61,8 +59,8 @@ public class PatientsController extends patient{
         }
         
     }
-    public ResultSet retrive_patients(){
-        sql ="SELECT * FROM pateints";
+    public ResultSet find_all(){
+        sql ="SELECT * FROM patients";
         try{
             connect();
             preparedstatement = connection.prepareStatement(sql);
@@ -74,7 +72,7 @@ public class PatientsController extends patient{
     }
     public ResultSet regPatientsStats(){
         sql = "SELECT extract(year from registration_date) as YEAR, extract(month from registration_date) as MONTH, COUNT(*) as PATIENTS "
-                + "FROM pateints GROUP BY extract(year from registration_date), extract(month from registration_date) ORDER BY 1,2";
+                + "FROM patients GROUP BY extract(year from registration_date), extract(month from registration_date) ORDER BY 1,2";
         try {
             connect();
             preparedstatement = connection.prepareStatement(sql);
@@ -84,5 +82,27 @@ public class PatientsController extends patient{
         }
         
         return results;
+    }
+    public ResultSet find_by_id(String id) throws Exception{
+        sql = "SELECT * FROM patients WHERE patients_id = ?";
+        connect();
+        preparedstatement = connection.prepareStatement(sql);
+        preparedstatement.setString(1, id);
+        results = preparedstatement.executeQuery();
+        return results;
+    }
+    public ResultSet find_unassigned() throws Exception{
+        sql = "SELECT patients_id as ID, patients_first_name as FIRST_NAME, patients_last_name as LAST_NAME, "
+                + "gender as GENDER, marital_status as MARITAL_STATUS, phone as PHONE, email as EMAIL, "
+                + "date_of_birth AS BIRTH_DATE "
+                + "FROM patients "
+                + "WHERE assigned = 0";
+        connect();
+        preparedstatement = connection.prepareStatement(sql);
+        results = preparedstatement.executeQuery();
+        return results;
+    }
+    public void discharge(){
+        
     }
 }

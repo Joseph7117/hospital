@@ -71,25 +71,37 @@ public class Toolbar extends JToolBar{
         
         billingButton = new JButton();
         billingButton.setIcon(createIcon("/images/accounts.png"));
-        billingButton.setToolTipText("Billing Information");
+        billingButton.setToolTipText("Facilitate Payement");
+        billingButton.addActionListener((ActionEvent ae) -> {
+            MDI parent = null;
+            try {
+                new MakePayment(parent).setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Toolbar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
         newEntryButton = new JButton();
         newEntryButton.setIcon(createIcon("/images/new_entry.png"));
         newEntryButton.setToolTipText("New Billing Information");
+        newEntryButton.addActionListener((ActionEvent ae) -> {
+            MDI parent1 = null;
+            try {
+                new Billing(parent1).setVisible(true);
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
         
         pharmaceutical_add = new JButton();
         pharmaceutical_add.setIcon(createIcon("/images/pill_add.png"));
         pharmaceutical_add.setToolTipText("Add Pharmaceutical Drug");
-        pharmaceutical_add.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                MDI parent = null;
-                try {
-                    new AddDrug(parent).setVisible(true);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        pharmaceutical_add.addActionListener((ActionEvent ae) -> {
+            MDI parent1 = null;
+            try {
+                new AddDrug(parent1).setVisible(true);
+            }catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
         

@@ -83,17 +83,14 @@ public class helpContents extends JDialog implements ActionListener{
             }
         });
         printButton = new JButton("Print", new ImageIcon(this.getClass().getResource("/images/print.png")));
-        printButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                PrinterJob job = PrinterJob.getPrinterJob();
-                PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-                if(job.printDialog(aset)){
-                    try {
-                        job.print();
-                    } catch (PrinterException ex) {
-                        System.out.println(ex);;
-                    }
+        printButton.addActionListener((ActionEvent ae) -> {
+            PrinterJob job = PrinterJob.getPrinterJob();
+            PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
+            if(job.printDialog(aset)){
+                try {
+                    job.print();
+                } catch (PrinterException ex) {
+                    System.out.println(ex);
                 }
             }
         });
