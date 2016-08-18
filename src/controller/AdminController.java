@@ -32,6 +32,34 @@ public class AdminController extends SystemUser{
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+          
+            
         }
+         public ResultSet list_db(){
+        String sql;
+        sql="show databases";
+             try {
+                 connect();
+                 statement = connection.createStatement();
+                results =   statement.executeQuery(sql);
+             } catch (Exception ex) {
+                 ex.printStackTrace();
+             }
+             return results;
+        }
+         
+         public ResultSet list_Groups(){
+         String sql;
+         sql="select DISTINCT user_group from user_credentials";
+             try {
+                 connect();
+                 statement=connection.createStatement();
+                 results=statement.executeQuery(sql);
+             } catch (Exception e) {
+                 e.printStackTrace();
+             }
+             return results;
+         
+         }
         
 }

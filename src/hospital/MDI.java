@@ -154,7 +154,7 @@ public class MDI extends JFrame{
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMargin(new Insets(5, 5, 5, 5));
         
-        JLabel nameLabel = new JLabel("Welcome, Joseph");
+        JLabel nameLabel = new JLabel("Welcome, Edwin");
         
         
         String userGroup = SystemUsersController.getUserGroup();
@@ -172,6 +172,10 @@ public class MDI extends JFrame{
                 accountsMenu.setEnabled(false);
                 break;
             case "House-Keeper":
+                registrationMenu.setEnabled(false);
+                accountsMenu.setEnabled(false);
+                patientsMenu.setEnabled(false);
+                pharmaceuticalMenu.setEnabled(false);
                 break;
             case "Receptionist":
                 break;

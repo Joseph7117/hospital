@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class userManagement extends JDialog {
     private JButton okButton;
     private JButton cancelButton;
     private JScrollPane pane;
+    private JDialog addUserDialog;
     
     public userManagement(JFrame parent) throws IOException{
             super(parent, "Manage Users", false);
@@ -66,6 +69,14 @@ public class userManagement extends JDialog {
         searchField = new CustomTextField();
         searchField.setBounds(5,65,200,25);
         searchField.setHint("Search...");
+        addUserDialog=new JDialog();
+        
+        addUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            
+            }
+        });
         
         
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -103,3 +114,4 @@ public class userManagement extends JDialog {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 }
+

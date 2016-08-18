@@ -16,6 +16,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -109,7 +111,11 @@ public class PharmacyInventory extends JDialog{
         Dimension btnsize = sendMessage.getPreferredSize();
         sendMessage.addActionListener((ActionEvent ae) -> {
             PharmacyInventory parent = null;
-            new SendMessage(parent).setVisible(true);
+            try {
+                new SendMessage(parent).setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(PharmacyInventory.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         viewCalendar = new JButton("View Calendar");
         viewCalendar.setPreferredSize(btnsize);

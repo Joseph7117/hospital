@@ -1,7 +1,10 @@
 
 package hospital;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
@@ -14,13 +17,17 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractListModel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
+import javax.swing.border.Border;
 
 public class backUp extends JDialog{
     private static final Insets EMPTY__INSETS = new Insets(0, 0, 0, 0);
@@ -38,6 +45,13 @@ public class backUp extends JDialog{
         
         Image img = ImageIO.read(this.getClass().getResource("/images/backup_1.png"));
         
+        sourceLabel=new JLabel("Source List");
+        destLabel=new JLabel("Destination List");
+        sourceList=new JList();
+        destList=new JList();
+        addButton=new JButton("add");
+        removeButton=new JButton("Remove");
+        
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent ae){
@@ -51,8 +65,55 @@ public class backUp extends JDialog{
         layoutControls();
     }
     private void layoutControls(){
+        JPanel backPanel=new JPanel();
+        backPanel.setBackground(Color.white);
+        JPanel buttonPanel=new JPanel();
+        backPanel.setBackground(Color.white);
+        
+        int space=15;
+        Border spaceBorder=BorderFactory.createEmptyBorder(space,space, space, space);
+        Border titlebackPanel=BorderFactory.createTitledBorder("Choose Backup Options");
+        
+        backPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, titlebackPanel));
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        
+        //BackPanel
+        backPanel.setLayout(new GridBagLayout());
+        
+        addGridItems(backPanel, sourceLabel, 0, 0, 1, 1, GridBagConstraints.WEST);              addGridItems(backPanel, destLabel, 2, 0, 1, 1, GridBagConstraints.EAST);
+        addGridItems(backPanel, sourceList, 1, 0, 2, 1, GridBagConstraints.EAST);               addGridItems(backPanel, destList, 4, 0, 2, 1, GridBagConstraints.WEST);
+        
+        
+        //ButtonPanel
+        addGridItems(buttonPanel, addButton, 0, 1, 1, 1, GridBagConstraints.WEST);
+        addGridItems(buttonPanel, removeButton, 0, 1, 1, 1, GridBagConstraints.EAST);
+        
+        
+        setLayout(new BorderLayout());
+        add(backPanel, BorderLayout.CENTER);
+        add(buttonPanel,BorderLayout.SOUTH);
+        
         
     }
+      private void addGridItems(JPanel panel, JComponent cmp, int x, int y, int width, int height, int align){
+        GridBagConstraints gc = new GridBagConstraints();
+        gc.gridx = x;
+        gc.gridy = y;
+        
+        gc.gridwidth = width;
+        gc.gridheight = height;
+        
+        gc.weightx = 0.5;
+        gc.weighty = 0.5;
+        
+        gc.insets = new Insets(5,5,5,5);
+        gc.anchor = align;
+        gc.fill = GridBagConstraints.NONE;
+        
+        panel.add(cmp, gc);
+    }
+     
     public String getSourceChoicesTitle(){
         return sourceLabel.getText();
     }
