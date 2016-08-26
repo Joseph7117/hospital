@@ -157,12 +157,12 @@ public class MDI extends JFrame{
         JLabel nameLabel = new JLabel("Welcome, Edwin");
         
         
-        String userGroup = SystemUsersController.getUserGroup();
+        String user_Group = SystemUsersController.getuserGroup();
         
         //Menu List Items:
         menuBar.add(registrationMenu);
         
-        if(null != userGroup)switch (userGroup) {
+        if(null !=user_Group)switch (user_Group) {
             case "Doctor":
                 registrationMenu.setEnabled(false);
                 accountsMenu.setEnabled(false);
@@ -264,6 +264,7 @@ public class MDI extends JFrame{
         
         JMenuItem closeShiftItem = new JMenuItem("Close Shift");
         closeShiftItem.setIcon(new ImageIcon(this.getClass().getResource("/images/close_shift.png")));
+       
         
         JMenuItem quitApplicationItem = new JMenuItem("Quit Application");
         quitApplicationItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));

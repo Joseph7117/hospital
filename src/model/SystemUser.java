@@ -12,8 +12,8 @@ package model;
 public class SystemUser extends Users{
     
     private String userName;
-    private char [] password;
-    public static String userGroup = null;
+    public char [] password;
+    public static String user_Group = null;
     public static String userId = null;
     
     public SystemUser(){
@@ -36,12 +36,12 @@ public class SystemUser extends Users{
         this.password = password;
     }
 
-    public static String getUserGroup() {
-        return userGroup;
+    public static String getuserGroup() {
+        return user_Group;
     }
 
-    public static void setUserGroup(String userGroup) {
-        SystemUser.userGroup = userGroup;
+    public static void setuserGroup(String user_Group) {
+        SystemUser.user_Group = user_Group;
     }
 
     public static String getUserId() {

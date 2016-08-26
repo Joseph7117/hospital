@@ -20,6 +20,10 @@ abstract public class Users extends Database{
     protected String state;
     protected String nationality;
     protected MaritalStatus maritalStatus;
+    protected UserGroup userGroup;
+    protected String user_Group;
+    protected String user_name;
+    protected char [] password;
 
     public String getUser_id() {
         return user_id;
@@ -148,4 +152,25 @@ abstract public class Users extends Database{
     public void setMaritalStatus(MaritalStatus maritalStatus) {
         this.maritalStatus = maritalStatus;
     }
+    
+    public void setPassword(char[] password){
+    this.password=password;
+    }
+    
+    public UserGroup getUserGroup(){
+        return userGroup;
+    }
+    
+    public void setUserGroup(UserGroup userGroup){
+    this.userGroup=userGroup;
+    }
+    
+    public String getuser_Group(){
+    return user_Group;
+    }
+    
+    public void setuser_Group(String user_group){
+        this.user_Group=user_group;
+    }
+    
 }

@@ -10,6 +10,7 @@ import model.BloodCategory;
 import model.GenderCategory;
 import model.MaritalStatus;
 import model.SystemUser;
+import model.UserGroup;
 
 
 public class SystemUsersController extends SystemUser{
@@ -19,7 +20,7 @@ public class SystemUsersController extends SystemUser{
     }
     public SystemUsersController(String user_id, String firstName, String lastName, GenderCategory gender, String email, 
             BloodCategory blood, String phone, int idNumber, String city, String state, String dob, MaritalStatus ms, String nationality,
-            int departmentId, String designation, String speciality){
+            int departmentId, String designation, String speciality, char[] password,UserGroup ug,String user_Group){
         this.user_id = user_id;
         this.first_name = firstName;
         this.last_name = lastName;
@@ -33,7 +34,8 @@ public class SystemUsersController extends SystemUser{
         this.dateOfBirth = dob;
         this.maritalStatus = ms;
         this.nationality = nationality;
-        
+        this.password=password;
+        this.user_Group=user_Group;
     }
     public boolean authenticate(String username, char []password){
         sql = "SELECT user_id, user_group, username, password FROM user_credentials WHERE username = ? AND password = PASSWORD(?)";
@@ -47,7 +49,7 @@ public class SystemUsersController extends SystemUser{
             
               while(results.next()){
                 userId = results.getString("user_id");
-                userGroup = results.getString("user_group");
+                user_Group = results.getString("user_group");
                 username = results.getString("username");
                 return true;
             }
@@ -82,4 +84,5 @@ public class SystemUsersController extends SystemUser{
         
         return null;
     }
+    
 }
