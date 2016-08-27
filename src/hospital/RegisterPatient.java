@@ -97,7 +97,7 @@ public class RegisterPatient extends JDialog{
                                                                                 
                                                                                                                                                 femaleRadioButton.setActionCommand("Female");         maritalModel.addElement("Single");
         lastName = new JLabel("Last Name: ");                                   firstNameField = new JTextField(20);                           addressNumberField.setWrapStyleWord(true);                                    genderGroup = new ButtonGroup();                      maritalModel.addElement("Married");
-        idNumber = new JLabel("ID Number: ");                                   firstNameField.setMinimumSize(new Dimension(200, 20));         addressNumberField.setBorder(BorderFactory.createLineBorder(Color.gray));     genderGroup.add(maleRadioButton);                     maritalModel.addElement("Divorce");
+        idNumber = new JLabel("ID Number: ");                                   firstNameField.setMinimumSize(new Dimension(200, 20));         addressNumberField.setBorder(BorderFactory.createLineBorder(Color.gray));     genderGroup.add(maleRadioButton);                     maritalModel.addElement("Divorced");
                                                                                    
                                                                                                                                                 genderGroup.add(femaleRadioButton);                  maritalStatus.setModel(maritalModel);
         dateOfBirth = new JLabel("Date of Birth: ");                            lastNameField = new JTextField(20);                             JScrollPane scroll = new JScrollPane(addressNumberField,                      
@@ -146,15 +146,18 @@ public class RegisterPatient extends JDialog{
                     String firstName = firstNameField.getText().trim();
                     String lastName = lastNameField.getText().trim();
                     GenderCategory gender = GenderCategory.valueOf(genderGroup.getSelection().getActionCommand());
+                    
+                    int idNo = Integer.parseInt(idNumberField.getText().trim());
+                    
                     MaritalStatus ms = MaritalStatus.valueOf(maritalStatus.getSelectedItem().toString());
                     String phone = mobileNumberField.getText().trim();
                     String email = emailAddressField.getText().trim();
                     
-                    Date date1 = (Date) datePicker1.getModel().getValue();
+                    Date date1 = (Date) datePicker2.getModel().getValue();
                     DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
                     String dob = df.format(date1);
                     
-                    Date  date2 = (Date) datePicker2.getModel().getValue();
+                    Date  date2 = (Date) datePicker1.getModel().getValue();
                     DateFormat df2 = new SimpleDateFormat("yyyy/MM/dd");
                     String regDate = df2.format(date2);
                     
@@ -167,7 +170,7 @@ public class RegisterPatient extends JDialog{
                     String nationality = nationalityField.getText().trim();
                     
                     
-                    PatientsController pc = new PatientsController(pid, firstName, lastName, gender, ms, phone, email, dob, regDate, city, state, nationality);
+                    PatientsController pc = new PatientsController(pid, firstName, lastName, gender,ms, idNo, phone, email, dob, regDate, city, state, nationality);
                     pc.save();
                     if(pc.isSaveSuccessful == true){
                         JOptionPane.showMessageDialog(RegisterPatient.this, "Successfuly Added Pateint", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -175,6 +178,7 @@ public class RegisterPatient extends JDialog{
                         firstNameField.requestFocus();
                         lastNameField.setText("");
                         maleRadioButton.setSelected(true);
+                        idNumberField.setText("");
                         maritalStatus.setSelectedIndex(0);
                         emailAddressField.setText("");
                         addressNumberField.setText("");

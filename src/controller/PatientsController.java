@@ -10,12 +10,13 @@ public class PatientsController extends patient{
     private String sql;
     
     public PatientsController(String patients_id, String firstName, String lastName, GenderCategory genderCategory, 
-            MaritalStatus maritalStatus, String phoneNumber, String email, String dateOfBirth, String regDate,
+            MaritalStatus maritalStatus, int natinonalId, String phoneNumber, String email, String dateOfBirth, String regDate,
             String city, String state, String nationality){
         this.patients_id = patients_id;
         this.first_name = firstName;
         this.last_name = lastName;
         this.genderCategory = genderCategory;
+        this.id_number = natinonalId;
         this.maritalStatus = maritalStatus;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -30,8 +31,8 @@ public class PatientsController extends patient{
     }
     public void save(){
         String sql="";
-        sql = "INSERT INTO pateints (patients_id, patients_first_name, patients_last_name, gender, marital_status, phone, email, "
-                + "date_of_birth, registration_date, city, state, nationality) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        sql = "INSERT INTO patients (patients_id, patients_first_name, patients_last_name, gender, national_id, marital_status, phone, email, "
+                + "date_of_birth, registration_date, city, state, nationality) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
         try {
             connect();
@@ -40,14 +41,15 @@ public class PatientsController extends patient{
             preparedstatement.setString(2, first_name);
             preparedstatement.setString(3, last_name);
             preparedstatement.setString(4, genderCategory.name());
-            preparedstatement.setString(5, maritalStatus.name());
-            preparedstatement.setString(6, phoneNumber);
-            preparedstatement.setString(7, email);
-            preparedstatement.setString(8, dateOfBirth);
-            preparedstatement.setString(9, registrationDate);
-            preparedstatement.setString(10, city);
-            preparedstatement.setString(11, state);
-            preparedstatement.setString(12, nationality);
+            preparedstatement.setInt(5, id_number);
+            preparedstatement.setString(6, maritalStatus.name());
+            preparedstatement.setString(7, phoneNumber);
+            preparedstatement.setString(8, email);
+            preparedstatement.setString(9, dateOfBirth);
+            preparedstatement.setString(10, registrationDate);
+            preparedstatement.setString(11, city);
+            preparedstatement.setString(12, state);
+            preparedstatement.setString(13, nationality);
             
             preparedstatement.execute();
             isSaveSuccessful = true;

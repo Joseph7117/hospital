@@ -17,27 +17,55 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 import model.HospitalItem;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import talking.AfricasTalkingGateway;
 
 public class SendMessage extends JDialog{
     private final JButton sendBtn, cancelBtn;
     private final JLabel recepientLabel, messageLabel;
     private final JComboBox recepeintsField;
-    private final JTextArea messageArea;
-    private JScrollPane pane;
-    private SystemUsersController sc;
+    private JTextArea messageArea = null;
+    private final JScrollPane pane;
+    private SystemUsersController sc, sc1;
+    private String phone = null;
+    private static final String USERNAME = "joseph00680";
+    private static final String API_KEY= "3acaf53429ceceb465577248e2259247e22569196a176a94ea87eb35785b82d0";
+    private String recepients = null;
+    private String message = null;
     
     public SendMessage(JDialog parent) throws Exception{
         super(parent, "Send Message", true);
         
         sc = new SystemUsersController();
+        sc1 = new SystemUsersController();
         
         sendBtn = new JButton("Send");
         sendBtn.addActionListener((ActionEvent ae) -> {
+            AfricasTalkingGateway gateway = new AfricasTalkingGateway(USERNAME, API_KEY);
+            recepients = phone;
+            message = messageArea.getText();
+            try {
+                JSONArray results = gateway.sendMessage(phone, message);
+                for(int i = 0; i < results.length(); i++ ){
+                    JSONObject result = results.getJSONObject(i);
+                    String status = result.getString("status");
+                    if("Success".equals(status)){
+                        JOptionPane.showMessageDialog(SendMessage.this, "Your Message Has been Sent", "Sent!", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(SendMessage.this, "Try Later or contact Admin", "Failed!", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } catch (Exception ex) {
+                System.out.println("Encountered an Error while sending the message"+ex.getMessage());
+            }
             
         });
         cancelBtn = new JButton("Cancel");
@@ -59,6 +87,18 @@ public class SendMessage extends JDialog{
         }
         recepeintsField.setModel(recepeintsModel);
         recepeintsField.addItemListener((ItemEvent ie) -> {
+            String id = null;
+            id = recepeintsField.getSelectedItem().toString();
+            id = id.substring(0, id.indexOf(' '));
+            try {
+                ResultSet rz = sc1.find_doctors_by_id(id);
+                while(rz.next()){
+                    phone = rz.getString("phone_number");
+                    phone = phone.trim();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             
         });
         

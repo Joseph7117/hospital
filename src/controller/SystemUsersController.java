@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import java.sql.ResultSet;
@@ -78,8 +74,12 @@ public class SystemUsersController extends SystemUser{
         results = preparedstatement.executeQuery();
         return results;
     }
-    public ResultSet find_doctors_by_id(String id){
-        
-        return null;
+    public ResultSet find_doctors_by_id(String id) throws Exception{
+        sql = "SELECT * FROM doctors WHERE doctors_id = ? LIMIT 1";
+        connect();
+        preparedstatement = connection.prepareStatement(sql);
+        preparedstatement.setString(1, id);
+        results = preparedstatement.executeQuery();
+        return results;
     }
 }

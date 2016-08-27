@@ -1,5 +1,6 @@
 package hospital;
 
+import controller.AdminController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,6 +21,7 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -33,14 +35,33 @@ public class AddDatabase extends JDialog{
         private JTextField dbTextField;
         private JButton saveButton;
         private JButton cancelButton;
+        private AdminController admin;
         
         public AddDatabase(JFrame parent) throws IOException{
             super(parent, "Add Database", false);
             
             dbLabel = new JLabel("Database Name: ");
             dbTextField = new JTextField(20);
+            admin = new AdminController();
             dbTextField.setMinimumSize(new Dimension(200, 20));
             saveButton = new JButton("Save");
+            saveButton.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    if(validate_fields() == true){
+                        String name = dbTextField.getText().trim();
+                        admin.add_database(name);
+                        if(admin.isAddSuccessful == true){
+                            JOptionPane.showMessageDialog(AddDatabase.this, "Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            dbTextField.setText(" ");
+                        }else{
+                            JOptionPane.showMessageDialog(AddDatabase.this, "Error Saving Database", "Error", JOptionPane.ERROR_MESSAGE);
+                            dispose();
+                        }
+                    }
+                }
+            });
             cancelButton = new JButton("Cancel");
             cancelButton.addActionListener(new ActionListener() {
 
@@ -110,5 +131,14 @@ public class AddDatabase extends JDialog{
             gc.fill = GridBagConstraints.NONE;
             
             panel.add(cmp, gc);
+        }
+        private boolean validate_fields(){
+            if(dbTextField.getText().trim().length() == 0){
+                JOptionPane.showMessageDialog(AddDatabase.this, "Please Enter the Database Name", "Error", JOptionPane.INFORMATION_MESSAGE);
+                dbTextField.requestFocus();
+            }else{
+                return true;
+            }
+            return false;
         }
 }

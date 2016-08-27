@@ -15,12 +15,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -29,6 +29,7 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -75,11 +76,22 @@ public class WeighIn extends JDialog{
         ageField = new JTextField(15);
         
         updateBtn = new JButton("Update Details");
+        updateBtn.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(validate_fields() == true){
+                    JOptionPane.showMessageDialog(WeighIn.this, "Updated Details of the Patient", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        
         assignBtn = new JButton("Assign Doctor");
         assignBtn.addActionListener((ActionEvent ae) -> {
             WeighIn parent1 = null;
             try {
-                new AssignDoc(parent1).setVisible(true);
+                JOptionPane.showMessageDialog(WeighIn.this, "Assigned Doctor", "Success", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -114,6 +126,7 @@ public class WeighIn extends JDialog{
         setSize(800, 500);
         setLocationRelativeTo(null);
         layoutControls();
+       
     }
     private void layoutControls() throws Exception{
         JPanel detailsPanel = new JPanel();
@@ -148,9 +161,6 @@ public class WeighIn extends JDialog{
         
         addGridItems(detailsPanel, tempertureLabel, 3, 1, 1, 1, GridBagConstraints.EAST);
         addGridItems(detailsPanel, temperatureField, 4, 1, 2, 1, GridBagConstraints.WEST);
-        
-        addGridItems(detailsPanel, ageLabel, 6, 1, 1, 1, GridBagConstraints.EAST);
-        addGridItems(detailsPanel, ageField, 7, 1, 2, 1, GridBagConstraints.WEST);
         
         addGridItems(detailsPanel, updateBtn, 4, 2, 2, 1, GridBagConstraints.WEST);
         addGridItems(detailsPanel, assignBtn, 6, 2, 2, 1, GridBagConstraints.WEST);
@@ -204,5 +214,21 @@ public class WeighIn extends JDialog{
         gc.fill = GridBagConstraints.NONE;
         
         panel.add(cmp, gc);
+    }
+    private boolean validate_fields(){
+        if(bldPressureField.getText().trim().length() == 0){
+            JOptionPane.showMessageDialog(WeighIn.this, "Please Fill in the Blood Pressure", "Error", JOptionPane.ERROR_MESSAGE);
+            bldPressureField.requestFocus();
+        } else if(temperatureField.getText().trim().length()== 0){
+            JOptionPane.showMessageDialog(WeighIn.this, "Please Fill in Temperature", "Error", JOptionPane.ERROR_MESSAGE);
+            temperatureField.requestFocus();
+        }else if (weightField.getText().trim().length() == 0){
+            JOptionPane.showMessageDialog(WeighIn.this, "Please Fill in Weight", "Error", JOptionPane.ERROR_MESSAGE);
+        }else if(heightField.getText().trim().length() == 0){
+            JOptionPane.showMessageDialog(WeighIn.this, "Please Fill in the Height", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            return true;
+        }
+        return false;
     }
 }

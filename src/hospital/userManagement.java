@@ -82,7 +82,7 @@ public class userManagement extends JDialog {
         userList = new UserList();
         pane = new JScrollPane(userList);
         groupList = new GroupList();
-        tabPane.addTab("Users", new ImageIcon(this.getClass().getResource("/images/doctor_1.png")), userList);
+        tabPane.addTab("Users", new ImageIcon(this.getClass().getResource("/images/doctor_1.png")), pane);
         tabPane.addTab("Groups", new ImageIcon(this.getClass().getResource("/images/dc_groups.png")), groupList);
         
         contentPanel.add(tabPane, BorderLayout.CENTER);

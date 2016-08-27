@@ -4,6 +4,7 @@ package hospital;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import controller.AdminController;
+import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import javax.swing.JScrollPane;
 import net.proteanit.sql.DbUtils;
@@ -26,8 +27,9 @@ public class UserList extends JPanel{
         table.setRowSelectionAllowed(true);
         table.getTableHeader().setReorderingAllowed(true);
         
-        pane = new JScrollPane(table);
-        add(pane);
+          pane = new JScrollPane(table);
+          setLayout(new BorderLayout());
+          add(pane);
         } catch(Exception ex){
             ex.printStackTrace();
         }

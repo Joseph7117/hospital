@@ -1,6 +1,7 @@
 package hospital;
 
 import controller.PatientsController;
+import controller.SystemUsersController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,12 +9,16 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.Border;
@@ -31,14 +36,37 @@ import org.jfree.util.Rotation;
 public class Dashboard extends JPanel{
     private JButton refreshButton;
     private JButton closeShiftBtn;
+    private ChartPanel chartPanel, barPanel;
    
     public Dashboard() throws SQLException{
         super();
         
         refreshButton = new JButton("Refresh DashBoard", new ImageIcon(this.getClass().getResource("/images/refresh_1.png")));
+        refreshButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                chartPanel.repaint();
+                barPanel.repaint();
+                JOptionPane.showMessageDialog(Dashboard.this, "Done Refreshing Charts", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         Dimension btnSize = refreshButton.getPreferredSize();
         closeShiftBtn = new JButton("Close Shift", new ImageIcon(this.getClass().getResource("/images/close_shift.png")));
         closeShiftBtn.setPreferredSize(btnSize);
+        closeShiftBtn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                SystemUsersController.setUserId(" ");
+                System.exit(0);
+                try {
+                    new Login().setVisible(true);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         
         this.setBackground(Color.gray);
         
@@ -47,8 +75,8 @@ public class Dashboard extends JPanel{
         JFreeChart barChart = ChartFactory.createBarChart("Patient's Report", "Year", "Patients", patientsRegBarCategoryDataset(),
                 PlotOrientation.VERTICAL, true,true,false);
         
-        ChartPanel chartPanel  = new ChartPanel(chart);
-        ChartPanel barPanel = new ChartPanel(barChart);
+        chartPanel  = new ChartPanel(chart);
+        barPanel = new ChartPanel(barChart);
         chartPanel.setPreferredSize(new Dimension(400, 300));
         barPanel.setPreferredSize(new Dimension(550, 300));
         

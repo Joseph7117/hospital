@@ -1,4 +1,3 @@
-
 package hospital;
 
 import controller.DrugController;
@@ -12,10 +11,14 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -26,7 +29,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.border.Border;
+import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
 
 public class PharmacyInventory extends JDialog{
@@ -43,6 +48,7 @@ public class PharmacyInventory extends JDialog{
     private JScrollPane pane, pane1;
     private DrugController dc;
     private PrescriptionsController pc;
+    private TableRowSorter sorter;
     
     public PharmacyInventory(JFrame parent) throws IOException, Exception{
         super(parent, "Pharmacy Inventory", false);
@@ -109,7 +115,11 @@ public class PharmacyInventory extends JDialog{
         Dimension btnsize = sendMessage.getPreferredSize();
         sendMessage.addActionListener((ActionEvent ae) -> {
             PharmacyInventory parent = null;
-            new SendMessage(parent).setVisible(true);
+            try {
+                new SendMessage(parent).setVisible(true);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
         viewCalendar = new JButton("View Calendar");
         viewCalendar.setPreferredSize(btnsize);
@@ -158,7 +168,22 @@ public class PharmacyInventory extends JDialog{
         drgTable = new JTable(DbUtils.resultSetToTableModel(rsz));
         drgTable.setRowSelectionAllowed(true);
         drgTable.getTableHeader().setReorderingAllowed(true);
-        drgTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //drgTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        sorter = new TableRowSorter<> (drgTable.getModel());
+        drgTable.setRowSorter(sorter);
+        
+        searchField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ae){
+                String text = searchField.getText();
+                if(text.length() == 0){
+                    sorter.setRowFilter(null);
+                }else{
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                }
+            }
+        });
         
         pane = new JScrollPane(drgTable);
         pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -171,7 +196,7 @@ public class PharmacyInventory extends JDialog{
         prescTable = new JTable(DbUtils.resultSetToTableModel(rsy));
         prescTable.setRowSelectionAllowed(true);
         prescTable.getTableHeader().setReorderingAllowed(true);
-        prescTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //prescTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         pane1 = new JScrollPane(prescTable);
         pane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

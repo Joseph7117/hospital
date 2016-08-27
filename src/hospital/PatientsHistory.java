@@ -123,7 +123,7 @@ public class PatientsHistory extends JDialog{
     diagHistory = new JTable(DbUtils.resultSetToTableModel(rezx));
     diagHistory.setRowSelectionAllowed(true);
     diagHistory.getTableHeader().setReorderingAllowed(true);
-    diagHistory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    //diagHistory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     sorter = new TableRowSorter(diagHistory.getModel());
     diagHistory.setRowSorter(sorter);
     
@@ -137,7 +137,7 @@ public class PatientsHistory extends JDialog{
     prescHistory = new JTable(DbUtils.resultSetToTableModel(reyx));
     prescHistory.setRowSelectionAllowed(true);
     prescHistory.getTableHeader().setReorderingAllowed(true);
-    prescHistory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    //prescHistory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     sorter1 = new TableRowSorter(prescHistory.getModel());
     prescHistory.setRowSorter(sorter1);
     
@@ -151,7 +151,7 @@ public class PatientsHistory extends JDialog{
     labAttendanceHistory = new JTable(DbUtils.resultSetToTableModel(resx));
     labAttendanceHistory.setRowSelectionAllowed(true);
     labAttendanceHistory.getTableHeader().setReorderingAllowed(true);
-    labAttendanceHistory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    //labAttendanceHistory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     sorter2 = new TableRowSorter(labAttendanceHistory.getModel());
     labAttendanceHistory.setRowSorter(sorter2);
     

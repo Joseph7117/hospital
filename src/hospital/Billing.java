@@ -11,6 +11,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.print.PageFormat;
@@ -19,6 +21,8 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -50,19 +54,35 @@ public class Billing extends JDialog{
     private final JDatePanelImpl datePanel;
     private final JDatePickerImpl datePicker;
     private final JFormattedTextField textField;
+    private HospitalItem item;
     
             
     public Billing(JFrame parent) throws SQLException{
         super(parent, "Billing Information", true);
         py = new Payment();
+        pctrl = new PaymentsController();
         
         patientsIdLabel = new JLabel("Patient Id: ");
         consultationLabel = new JLabel("Consultation Fee: ");
+        
+        consultationField = new JTextField(20);
+        consultationField.setMinimumSize(new Dimension(200, 20));
+        
         labChargesLabel = new JLabel("Lab Charges: ");
+        labChargesField = new JTextField(20);
+        labChargesField.setMinimumSize(new Dimension(200, 20));
+        
         prescriptionLabel = new JLabel("Prescription Fees:");
+        prescriptionField = new JTextField(20);
+        prescriptionField.setMinimumSize(new Dimension(200,20));
+        
         wardLabel = new JLabel("Ward Charges: ");
+        
         billIdLabel = new JLabel("Biling Id: ");
+        
         totalsLabel = new JLabel("Totals: ");
+        totalsField = new JTextField(10);
+        
         dateLabel = new JLabel("Date: ");
         
         generateBtn = new JButton("Generate Bill");
@@ -110,15 +130,54 @@ public class Billing extends JDialog{
         }
         patientId.setModel(patientsModel);
         
-        consultationField = new JTextField(20);
-        consultationField.setMinimumSize(new Dimension(200, 20));
-        labChargesField = new JTextField(20);
-        labChargesField.setMinimumSize(new Dimension(200, 20));
-        prescriptionField = new JTextField(20);
-        prescriptionField.setMinimumSize(new Dimension(200,20));
+        patientId.addItemListener((ItemEvent ie) -> {
+            try {
+                String id = null;
+                int labTotals = 0;
+                int prescTotals = 0;
+                int consulationFee = 200;
+                int totals = 0;
+                
+                id = patientId.getSelectedItem().toString();
+                id = id.substring(0, id.indexOf(' '));
+                ResultSet labTot = pctrl.find_Lab_Totals(id);
+                ResultSet presTot = pctrl.find_Presc_Totals(id);
+                
+                if(!labTot.isBeforeFirst()){
+                    labChargesField.setText("0");
+                    labChargesField.setEditable(false);
+                }else{
+                    while(labTot.next()){
+                        labTotals = labTot.getInt("Totals");
+                        labChargesField.setText(Integer.toString(labTotals));
+                        labChargesField.setEditable(false);
+                    }
+                }
+                
+                if(!presTot.isBeforeFirst()){
+                    prescriptionField.setText("0");
+                    prescriptionField.setEditable(false);
+                }else{
+                    while(presTot.next()){
+                        prescTotals = presTot.getInt("Totals");
+                        prescriptionField.setText(Integer.toString(prescTotals));
+                        prescriptionField.setEditable(false);
+                    }
+                }
+                
+                consultationField.setText(Integer.toString(consulationFee));
+                consultationField.setEditable(false);
+                
+                totals = labTotals + prescTotals+consulationFee;
+                totalsField.setText(Integer.toString(totals));
+                
+            } catch (Exception ex) {
+            }
+        });
+        
+       
         wardChargesField = new JTextField(20);
         wardChargesField.setMinimumSize(new Dimension(200,20));
-        totalsField = new JTextField(10);
         
         billIdTextField = new JTextField(15);
         String billId = py.getBillingId();

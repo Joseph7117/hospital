@@ -12,9 +12,8 @@ public class Main {
                 try{
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     //new SplashScreen();
-                    //new Login();
-                    
-                    new MDI();
+                    new Login();
+                   //new MDI();
                 }catch( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e){
                     e.printStackTrace();
                 }   

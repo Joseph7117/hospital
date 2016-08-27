@@ -10,8 +10,8 @@ import java.sql.Statement;
 
 
 public class Database{
-    private final String username = "hospital";
-    private final String password = "hospital123";
+    private final String username = "joseph";
+    private final String password = "joseph7117";
     private final String connectionUrl = "jdbc:mysql://localhost:3306/hospital";
     protected Connection connection = null;
     protected PreparedStatement preparedstatement = null;

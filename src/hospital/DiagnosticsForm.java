@@ -16,6 +16,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
@@ -37,8 +39,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 
 import javax.swing.border.Border;
+import javax.swing.table.TableRowSorter;
 import model.BloodCategory;
 import model.Diagnosis;
 import model.HospitalItem;
@@ -90,6 +94,7 @@ public class DiagnosticsForm extends JDialog{
     private JScrollPane pane, pane1, pane2, pane3;
     private JTable dcTable;
     private HospitalItem hi;
+    private TableRowSorter sorter;
     
     private final UtilDateModel model;
     private final JDatePanelImpl datePanel;
@@ -178,7 +183,7 @@ public class DiagnosticsForm extends JDialog{
 
                         BloodCategory bld = BloodCategory.valueOf(bloodGroupBox.getSelectedItem().toString());
                         String remarks = remarksArea.getText().trim();
-                        String patDetails = diagnosisDetails.getText().trim();
+                        String patDetails = diagnosisDetailsField.getText().trim();
                         String procedure = procedureFollowedArea.getText().trim();
                         String patHistory = patientHistoryArea.getText().trim();
 
@@ -293,6 +298,22 @@ public class DiagnosticsForm extends JDialog{
         dcTable.getColumnModel().getColumn(6).setPreferredWidth(200);
         dcTable.getColumnModel().getColumn(7).setPreferredWidth(150);
         dcTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+        
+        sorter = new TableRowSorter(dcTable.getModel());
+        dcTable.setRowSorter(sorter);
+        
+        searchField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ae){
+                String text = searchField.getText();
+                if(text.length() == 0){
+                    sorter.setRowFilter(null);
+                }else{
+                    sorter.setRowFilter(RowFilter.regexFilter(text));
+                }
+            }
+});
+        
         
         pane = new JScrollPane(dcTable);
         pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

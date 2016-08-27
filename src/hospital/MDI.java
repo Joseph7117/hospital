@@ -137,16 +137,18 @@ public class MDI extends JFrame{
         pharmaceuticalMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu accountsMenu = new JMenu("Accounts");
         accountsMenu.setMargin(new Insets(5, 5, 5, 5));
-        accountsMenu.setEnabled(false);
+        accountsMenu.setEnabled(true);
         
-        JMenu housekeepingMenu = new JMenu("House Keeping");
-        housekeepingMenu.setMargin(new Insets(5, 5, 5, 5));
+       /*JMenu housekeepingMenu = new JMenu("House Keeping");
+        housekeepingMenu.setMargin(new Insets(5, 5, 5, 5));*/
         JMenu lastofficeMenu = new JMenu("Last Office");
         lastofficeMenu.setMargin(new Insets(5, 5, 5, 5));
         lastofficeMenu.setEnabled(false);
         
         JMenu dataReportMenu = new JMenu("Data Report");
         dataReportMenu.setMargin(new Insets(5, 5, 5, 5));
+        dataReportMenu.setEnabled(false);
+        
         JMenu windowMenu = new JMenu("Window");
         windowMenu.setMargin(new Insets(5, 5, 5, 5));
         JMenu toolsMenu = new JMenu("Tools");
@@ -303,7 +305,12 @@ public class MDI extends JFrame{
         newConsultationItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                newConsultation.setVisible(true);
+                MDI parent = null;
+                try {
+                    new NewConsultation(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -314,7 +321,12 @@ public class MDI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                crossCheck.setVisible(true);
+                MDI parent = null;
+                try {
+                    new CrosscheckConsultation(parent).setVisible(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         
@@ -330,7 +342,12 @@ public class MDI extends JFrame{
         registeredPatients.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                weighIn.setVisible(true);
+                MDI parent = null;
+                try {
+                    new WeighIn(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         
@@ -416,7 +433,7 @@ public class MDI extends JFrame{
         labReportsItem.addActionListener((ActionEvent ae) -> {
             MDI parent1 = null;
             try {
-                new LabRequest(parent1).setVisible(true);
+                new LabReport(parent1).setVisible(true);
             }catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -520,7 +537,12 @@ public class MDI extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                pharmacyInv.setVisible(true);
+                MDI parent = null;
+                try {
+                    new PharmacyInventory(parent).setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         
@@ -584,7 +606,7 @@ public class MDI extends JFrame{
         accountsMenu.add(purchasesMenuItem);
         accountsMenu.add(supplierInvoicesMenuItem);
         
-        menuBar.add(housekeepingMenu);
+       /* menuBar.add(housekeepingMenu);
         
         JMenuItem storeMenuItem = new JMenuItem("Housekeeping Store");
         storeMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
@@ -596,7 +618,7 @@ public class MDI extends JFrame{
         
         housekeepingMenu.add(storeMenuItem);
         housekeepingMenu.addSeparator();
-        housekeepingMenu.add(storeInventory);
+        housekeepingMenu.add(storeInventory);*/
        
         menuBar.add(lastofficeMenu);
         
@@ -803,7 +825,7 @@ public class MDI extends JFrame{
        toolsMenu.add(backUpDatabase);
        toolsMenu.add(restoreDatabase);
        toolsMenu.add(dbSync);
-       toolsMenu.add(cloudFolder);
+       //toolsMenu.add(cloudFolder);
        
         
         

@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/hospital/backUp.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>64</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/LabManagement.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/LabsController.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/DrugController.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/RegisterPatient.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/PaymentsController.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/backUp.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/LabRequest.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Main.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/Payment.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/Labs.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/DiagnosticsForm.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/patient.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/PatientsController.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/DischargeSummary.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/AfricasTalkingGateway.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/AssignDoc.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/MakePayment.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Billing.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/WardRequest.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/PharmaceuticalOverview.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Printer.java</file>
-            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/searchForm.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/HospitalBranches.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/LabReport.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/model/Users.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/UserList.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/AddDatabase.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/MDI.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/CrosscheckConsultation.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/userManagement.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/Dashboard.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/PharmacyInventory.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/SystemUsersController.java</file>
             <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/WeighIn.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/controller/AdminController.java</file>
+            <file>file:/C:/Users/JOSEPH/Documents/NetBeansProjects/hospital/src/hospital/NewConsultation.java</file>
         </group>
     </open-files>
 </project-private>

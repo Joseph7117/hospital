@@ -2,6 +2,7 @@
 package hospital;
 
 import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
@@ -14,13 +15,16 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractListModel;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
+import javax.swing.border.Border;
 
 public class backUp extends JDialog{
     private static final Insets EMPTY__INSETS = new Insets(0, 0, 0, 0);
@@ -28,7 +32,7 @@ public class backUp extends JDialog{
     private static final String REMOVE_BUTTON_LABEL = "<<Remove";
     private static final String DEFAULT_CHOICE = "Available Databases";
     private static final String YOUR_CHOICE = "Selected Databases";
-    private JLabel sourceLabel, destLabel;
+    private JLabel sourceLabel, destLabel, selectLabel;
     private JList sourceList, destList;
     private SortedListModel sourceListModel, destListModel;
     private JButton addButton, removeButton;
@@ -38,6 +42,8 @@ public class backUp extends JDialog{
         
         Image img = ImageIO.read(this.getClass().getResource("/images/backup_1.png"));
         
+        selectLabel = new JLabel("Select Database:");
+        
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent ae){
@@ -45,12 +51,24 @@ public class backUp extends JDialog{
             }
         });
         
-        setSize(600, 400);
+        setSize(400, 200);
         setIconImage(img);
         setLocationRelativeTo(null);
         layoutControls();
     }
     private void layoutControls(){
+        JPanel contentPanel = new JPanel();
+        JPanel buttonsPanel = new JPanel();
+        
+        int space = 15;
+        contentPanel.setBackground(Color.lightGray);
+        buttonsPanel.setBackground(Color.gray);
+        
+        Border spaceBorder = BorderFactory.createEmptyBorder(space, space, space, space);
+        Border innerBorder = BorderFactory.createTitledBorder("Select Database to Back-Up");
+        
+        contentPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, innerBorder));
+        contentPanel.setLayout(new GridBagLayout());
         
     }
     public String getSourceChoicesTitle(){

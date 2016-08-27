@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import model.SystemUser;
 
 public class AdminController extends SystemUser{
+        public boolean isAddSuccessful = false;
         public AdminController(){  
             super();
         }
@@ -26,12 +27,19 @@ public class AdminController extends SystemUser{
         }
         public void add_database(String dbname){
             String sql;
-            sql = "CREATE DATABASE ";
+            sql = "CREATE DATABASE "+dbname;
             try {
                 connect();
+                preparedstatement = connection.prepareStatement(sql);
+                preparedstatement.execute();
+                isAddSuccessful = true;
+                disconnect();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+        public void backup_Database(String dbname){
+            
         }
         
 }

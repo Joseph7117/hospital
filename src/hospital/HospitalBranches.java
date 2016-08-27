@@ -20,7 +20,7 @@ public class HospitalBranches extends JPanel{
     private String destinationFile;
     public HospitalBranches() throws MalformedURLException, IOException{
         super();
-        /*latitude = "-1.2833300";
+        latitude = "-1.2833300";
         longitude = "36.8166700";
         imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center="
                 +latitude + ","+longitude + "&zoom=11&size=600x550&scale=2&maptype=roadmap";
@@ -41,7 +41,8 @@ public class HospitalBranches extends JPanel{
         //create GUI component that add the Image: image.jpg
         ImageIcon imageIcon = new ImageIcon((new ImageIcon("image.jpg")).getImage().getScaledInstance(600, 550, java.awt.Image.SCALE_SMOOTH));
         add(new JLabel(imageIcon));
-                */
+                
+       
         this.setBackground(Color.lightGray);
     }
     

@@ -174,6 +174,13 @@ public final class LabReport extends JDialog {
         }
     });
     cancelButton = new JButton("Cancel");
+    cancelButton.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            dispose();
+        }
+    });
     
         
         addWindowListener(new WindowAdapter(){
