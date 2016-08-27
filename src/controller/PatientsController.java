@@ -12,6 +12,7 @@ public class PatientsController extends patient{
     public PatientsController(String patients_id, String firstName, String lastName, GenderCategory genderCategory, 
             MaritalStatus maritalStatus, int natinonalId, String phoneNumber, String email, String dateOfBirth, String regDate,
             String city, String state, String nationality){
+        
         this.patients_id = patients_id;
         this.first_name = firstName;
         this.last_name = lastName;
@@ -31,8 +32,13 @@ public class PatientsController extends patient{
     }
     public void save(){
         String sql="";
+<<<<<<< HEAD
         sql = "INSERT INTO patients (patients_id, patients_first_name, patients_last_name, gender, national_id, marital_status, phone, email, "
                 + "date_of_birth, registration_date, city, state, nationality) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+=======
+        sql = "INSERT INTO patients (patients_id, patients_first_name, patients_last_name, gender, marital_status, phone, email, "
+                + "date_of_birth, registration_date, city, state, nationality) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+>>>>>>> refs/remotes/origin/master
             
         try {
             connect();

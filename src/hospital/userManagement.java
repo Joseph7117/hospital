@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -32,6 +34,8 @@ public class userManagement extends JDialog {
     private JButton okButton;
     private JButton cancelButton;
     private JScrollPane pane;
+    private JDialog addUserDl;
+    private JDialog addGroupDl;
     
     public userManagement(JFrame parent) throws IOException{
             super(parent, "Manage Users", false);
@@ -44,6 +48,35 @@ public class userManagement extends JDialog {
                     dispose();
                 }
             });
+            
+        addUser = new JButton("Add User", new ImageIcon(this.getClass().getResource("/images/add_user.png")));
+        addGroup = new JButton("Add Group", new ImageIcon(this.getClass().getResource("/images/add_group.png")));
+        userProperties = new JButton("User Properties", new ImageIcon(this.getClass().getResource("/images/user_prop.png")));
+        deleteUser = new JButton("Delete User", new ImageIcon(this.getClass().getResource("/images/user-delete.png")));
+        refreshUsers = new JButton("Refresh Users", new ImageIcon(this.getClass().getResource("/images/refresh_1.png")));
+        searchField = new CustomTextField();
+        searchField.setBounds(5,65,200,25);
+        searchField.setHint("Search...");
+        
+        //adduser button
+        addUserDl=new addUserDialog(parent);        
+        addUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+           addUserDl.setVisible(true);
+            }
+        });
+        
+        //addgroup button
+        addGroupDl=new addGroupDialog(parent);
+        addGroup.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    addGroupDl.setVisible(true);
+                }
+            });
+        
+            
             setSize(800, 530);
             setIconImage(img);
             setLocationRelativeTo(null);
@@ -58,14 +91,14 @@ public class userManagement extends JDialog {
         contentPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         bottomPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         
-        addUser = new JButton("Add User", new ImageIcon(this.getClass().getResource("/images/add_user.png")));
-        addGroup = new JButton("Add Group", new ImageIcon(this.getClass().getResource("/images/add_group.png")));
-        userProperties = new JButton("User Properties", new ImageIcon(this.getClass().getResource("/images/user_prop.png")));
-        deleteUser = new JButton("Delete User", new ImageIcon(this.getClass().getResource("/images/user-delete.png")));
-        refreshUsers = new JButton("Refresh Users", new ImageIcon(this.getClass().getResource("/images/refresh_1.png")));
-        searchField = new CustomTextField();
-        searchField.setBounds(5,65,200,25);
-        searchField.setHint("Search...");
+         //deleteuser button
+        deleteUser.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    
+                    
+                }
+            });
         
         
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -103,3 +136,4 @@ public class userManagement extends JDialog {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 }
+

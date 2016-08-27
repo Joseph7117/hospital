@@ -118,7 +118,11 @@ public class PharmacyInventory extends JDialog{
             try {
                 new SendMessage(parent).setVisible(true);
             } catch (Exception ex) {
+<<<<<<< HEAD
                 ex.printStackTrace();
+=======
+                Logger.getLogger(PharmacyInventory.class.getName()).log(Level.SEVERE, null, ex);
+>>>>>>> refs/remotes/origin/master
             }
         });
         viewCalendar = new JButton("View Calendar");

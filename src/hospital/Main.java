@@ -13,6 +13,10 @@ public class Main {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     //new SplashScreen();
                     new Login();
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> refs/remotes/origin/master
                    //new MDI();
                 }catch( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e){
                     e.printStackTrace();

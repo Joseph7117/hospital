@@ -72,7 +72,7 @@ public class PharmaceuticalOverview extends JPanel{
     }
     private JSCAccordion Accordion(){
         JSCAccordion accordion = new JSCAccordion();
-        String tab1string = "";
+        String tab1string = "gggggggggggggggggg";
         String tab2string = "";
         String tab3string = "";
         String tab4string = "";
